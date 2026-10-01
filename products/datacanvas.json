@@ -1,0 +1,83 @@
+{
+  "id": "datacanvas",
+  "name": "DataCanvas BI",
+  "tagline": "From raw CSV to boardroom",
+  "audience": "ChatGPT Data Analytics",
+  "colors": {
+    "background": "#FFFFFF",
+    "accent": "#2563EB",
+    "text": "#0A0A0A"
+  },
+  "hook": {
+    "label": "// 01 – HOOK",
+    "words": ["Still", "waiting", "on", "static", "matplotlib", "PNGs?"],
+    "taglineBottom": "MODEL CONTEXT PROTOCOL (MCP)"
+  },
+  "features": [
+    {
+      "tag": "// FEATURE 01 · CLIENT-SIDE WASM",
+      "name": "DuckDB-WASM In-Browser",
+      "benefit": "0ms query latency · 100% data privacy · Zero server load",
+      "metricLabel": "COST PER QUERY",
+      "metricValue": "$0.00",
+      "iconType": "database"
+    },
+    {
+      "tag": "// FEATURE 02 · NATIVE UI PANEL",
+      "name": "Interactive ECharts Panels",
+      "benefit": "Drill-down filters · Zoomable trendlines · One-click theme toggle",
+      "metricLabel": "UI EXPERIENCE",
+      "metricValue": "60 FPS",
+      "iconType": "chart"
+    }
+  ],
+  "productShowcase": {
+    "headlinePrefix": "DataCanvas turns it into",
+    "headlineHighlight": "dashboards.",
+    "bullets": [
+      "Renders live inside ChatGPT sidebar",
+      "Full client-side WASM filtering",
+      "1-Click unbranded executive PDF export"
+    ],
+    "mockup": {
+      "windowTitle": "DataCanvas Live Inspector",
+      "actionBtnText": "Exportar PDF",
+      "kpis": [
+        { "label": "Registros", "value": "1,248", "sub": "↑ 100% parseado" },
+        { "label": "Volumen Total", "value": "$48,920.00", "sub": "Métrica agregada", "color": "#3B82F6" },
+        { "label": "Promedio / Reg", "value": "$39.19", "sub": "En vivo en cliente", "color": "#C084FC" }
+      ],
+      "chart": {
+        "title": "Distribución por Región",
+        "badge": "DuckDB 0ms",
+        "bars": [
+          { "label": "Norte", "value": 120 },
+          { "label": "Sur", "value": 85 },
+          { "label": "Este", "value": 105 },
+          { "label": "Oeste", "value": 75 },
+          { "label": "Centro", "value": 50 },
+          { "label": "Latam", "value": 115 }
+        ]
+      }
+    }
+  },
+  "systemPipeline": [
+    { "step": "// 01 · INGEST", "title": "CSV Semantic Profiling", "metric": "1,248 rows", "sub": "Auto-detect schema & data types" },
+    { "step": "// 02 · EXECUTION", "title": "DuckDB-WASM Sandbox", "metric": "3.2 ms", "sub": "100% in-memory columnar SQL" },
+    { "step": "// 03 · VISUALS", "title": "Apache ECharts Canvas", "metric": "60 FPS", "sub": "WebGL / SVG dynamic rendering" },
+    { "step": "// 04 · DELIVERABLE", "title": "Ranuk Report Engine", "metric": "659.56 KB", "sub": "High-res unbranded PDF document" }
+  ],
+  "mission": {
+    "line1": "You prompt.",
+    "line2Prefix": "We handle the",
+    "line2Highlight": "rest."
+  },
+  "outro": {
+    "wordmark": "DataCanvas",
+    "wordmarkAccent": "BI",
+    "subtitle": "Interactive CSV dashboards & executive reports inside ChatGPT",
+    "ctaText": "Get DataCanvas Pro",
+    "url": "ranuk.dev/datacanvas",
+    "socialProof": "1.2B ChatGPT Users · 100% In-Browser Privacy · $0 Server Fees"
+  }
+}

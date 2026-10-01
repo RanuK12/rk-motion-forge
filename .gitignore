@@ -1,0 +1,7 @@
+node_modules/
+.remotion/
+package-lock.json
+.DS_Store
+dist/videos/*.mp4
+dist/posters/*.png
+dist/posters/*.jpg
