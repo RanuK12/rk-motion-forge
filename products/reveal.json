@@ -1,0 +1,82 @@
+{
+  "id": "reveal",
+  "name": "El Revelado",
+  "tagline": "Uncover the secret mystery",
+  "audience": "Viral Curiosity & Discovery",
+  "colors": {
+    "background": "#FFFFFF",
+    "accent": "#E11D48",
+    "text": "#0A0A0A"
+  },
+  "hook": {
+    "label": "// 01 – MYSTERY",
+    "words": ["Can", "you", "guess", "what", "lies", "underneath?"],
+    "taglineBottom": "SATELLITE TILE UNLOCK GAME"
+  },
+  "features": [
+    {
+      "tag": "// FEATURE 01 · TILE ENGINE",
+      "name": "Live Grid Unveiling",
+      "benefit": "One tile revealed daily · High-res NASA orbital imagery",
+      "metricLabel": "TILES REMAINING",
+      "metricValue": "48 / 100",
+      "iconType": "rocket"
+    },
+    {
+      "tag": "// FEATURE 02 · SOCIAL ENGAGEMENT",
+      "name": "Community Speculation",
+      "benefit": "Instant leaderboard · Global guessing lobby · Zero spoilers",
+      "metricLabel": "DAILY GUESSES",
+      "metricValue": "14,800+",
+      "iconType": "bot"
+    }
+  ],
+  "productShowcase": {
+    "headlinePrefix": "Every tile brings you closer to the",
+    "headlineHighlight": "truth.",
+    "bullets": [
+      "Dynamic interactive map grid",
+      "Clues hidden in geological formations",
+      "Share your daily discovery in 1 click"
+    ],
+    "mockup": {
+      "windowTitle": "El Revelado — Mapa Oculto",
+      "actionBtnText": "Destapar Baldosa",
+      "kpis": [
+        { "label": "Despejado", "value": "52%", "sub": "Del enigma total", "color": "#E11D48" },
+        { "label": "Jugadores", "value": "8,920", "sub": "En la última hora" },
+        { "label": "Premio", "value": "1st Solve", "sub": "Hall of Fame" }
+      ],
+      "chart": {
+        "title": "Actividad de Destape por Hora",
+        "badge": "En Tiempo Real",
+        "bars": [
+          { "label": "10h", "value": 70 },
+          { "label": "12h", "value": 110 },
+          { "label": "14h", "value": 95 },
+          { "label": "16h", "value": 140 },
+          { "label": "18h", "value": 160 }
+        ]
+      }
+    }
+  },
+  "systemPipeline": [
+    { "step": "// 01 · ORBIT", "title": "Satellite Imagery", "metric": "0.5m/px", "sub": "Ultra high-resolution crop" },
+    { "step": "// 02 · ENCRYPT", "title": "Coordinate Obfuscation", "metric": "SHA-256", "sub": "Zero leak guarantee" },
+    { "step": "// 03 · INTERACT", "title": "Canvas Grid Engine", "metric": "60 FPS", "sub": "Smooth zoom & pan" },
+    { "step": "// 04 · REVEAL", "title": "Daily Unlock Drop", "metric": "18:00 UTC", "sub": "Synchronized global event" }
+  ],
+  "mission": {
+    "line1": "You explore.",
+    "line2Prefix": "Together we unveil the",
+    "line2Highlight": "secret."
+  },
+  "outro": {
+    "wordmark": "El",
+    "wordmarkAccent": "Revelado",
+    "subtitle": "The collective satellite mystery that hooks the entire internet",
+    "ctaText": "Uncover Today's Tile",
+    "url": "reveal.ranuk.dev",
+    "socialProof": "100.000+ Exploradores · Sin Registro · 100% Adictivo"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "ranuk-profit",
+  "name": "Ranuk Profit",
+  "tagline": "Automated crypto execution engine",
+  "audience": "Quantitative Crypto Trading",
+  "colors": {
+    "background": "#FFFFFF",
+    "accent": "#10B981",
+    "text": "#0A0A0A"
+  },
+  "hook": {
+    "label": "// 01 – ALGO BOT",
+    "words": ["Still", "trading", "manually", "with", "emotional", "drawdowns?"],
+    "taglineBottom": "BINANCE & BYBIT HIGH FREQUENCY ENGINE"
+  },
+  "features": [
+    {
+      "tag": "// FEATURE 01 · VOLATILITY MATRIX",
+      "name": "Adaptive EMA Trend Engine",
+      "benefit": "0.15s order fill · Micro-spread execution · Trailing stop lock",
+      "metricLabel": "SHARPE RATIO",
+      "metricValue": "2.84",
+      "iconType": "rocket"
+    },
+    {
+      "tag": "// FEATURE 02 · RISK MANAGEMENT",
+      "name": "Auto Stop-Loss Circuit",
+      "benefit": "Strict 1.5% max capital drawdown per session · Real-time kill switch",
+      "metricLabel": "MAX DRAWDOWN",
+      "metricValue": "< 1.5%",
+      "iconType": "terminal"
+    }
+  ],
+  "productShowcase": {
+    "headlinePrefix": "Ranuk Profit turns market noise into",
+    "headlineHighlight": "alpha.",
+    "bullets": [
+      "Real-time WebSocket market depth scanner",
+      "Automatic position sizing & leverage control",
+      "Telegram instant alert integration"
+    ],
+    "mockup": {
+      "windowTitle": "Ranuk Profit — Mesa Manual Terminal",
+      "actionBtnText": "Live Engine ON",
+      "kpis": [
+        { "label": "Win Rate", "value": "78.4%", "sub": "Last 120 trades", "color": "#10B981" },
+        { "label": "P&L 30D", "value": "+$14,290", "sub": "Gross profit", "color": "#10B981" },
+        { "label": "Latency", "value": "18 ms", "sub": "Direct exchange API" }
+      ],
+      "chart": {
+        "title": "Cumulative Profit Curve",
+        "badge": "WebSocket Live",
+        "bars": [
+          { "label": "W1", "value": 60 },
+          { "label": "W2", "value": 85 },
+          { "label": "W3", "value": 110 },
+          { "label": "W4", "value": 135 },
+          { "label": "W5", "value": 160 }
+        ]
+      }
+    }
+  },
+  "systemPipeline": [
+    { "step": "// 01 · FEED", "title": "WebSocket Stream", "metric": "50k ticks/s", "sub": "Raw order book aggregation" },
+    { "step": "// 02 · FILTER", "title": "Signal Validator", "metric": "4 conditions", "sub": "Strict zero-fakeout gating" },
+    { "step": "// 03 · ROUTING", "title": "Smart Order Router", "metric": "18 ms", "sub": "Sub-second limit placement" },
+    { "step": "// 04 · PROFIT", "title": "Trailing Take-Profit", "metric": "+1.8% AVG", "sub": "Automated profit locking" }
+  ],
+  "mission": {
+    "line1": "You set rules.",
+    "line2Prefix": "The bot captures the",
+    "line2Highlight": "profit."
+  },
+  "outro": {
+    "wordmark": "Ranuk",
+    "wordmarkAccent": "Profit",
+    "subtitle": "High-frequency quantitative trading algorithms & risk guards",
+    "ctaText": "Deploy Bot Instance",
+    "url": "ranuk.dev/profit",
+    "socialProof": "100+ Live Deployments · 99.98% System Uptime · Zero Emotion"
+  }
+}
