@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# (c) 2026 Ranuk IT Solutions — Enviar videos de muestra a Emilio por Telegram
+# (c) 2026 Ranuk IT Solutions — Enviar los 3 nuevos tipos de video a Emilio por Telegram
 import os
 import sys
 import json
@@ -11,8 +11,6 @@ HOME = Path.home()
 ENV_FILE = HOME / ".ranukita/telegram.env"
 FORGE_DIR = HOME / "Desktop/Oficina_Ranuk/rk-motion-forge"
 VIDEOS_DIR = FORGE_DIR / "dist/videos"
-POSTERS_DIR = FORGE_DIR / "dist/posters"
-DATACANVAS_DOCS = HOME / "Desktop/Oficina_Ranuk/rk-mcp-datacanvas/docs"
 
 if not ENV_FILE.exists():
     print(f"Error: {ENV_FILE} no encontrado")
@@ -39,23 +37,6 @@ def send_message(text):
     r = subprocess.run(cmd, capture_output=True, text=True)
     return r.stdout
 
-def send_photo(file_path, caption):
-    p = Path(file_path)
-    if not p.exists():
-        print(f"File not found: {p}")
-        return
-    print(f"Enviando foto: {p.name}...")
-    cmd = [
-        "curl", "-s", "-X", "POST",
-        f"https://api.telegram.org/bot{TOKEN}/sendPhoto",
-        "-F", f"chat_id={CHAT_ID}",
-        "-F", f"photo=@{str(p)}",
-        "-F", f"caption={caption}",
-        "-F", "parse_mode=HTML"
-    ]
-    r = subprocess.run(cmd, capture_output=True, text=True)
-    print(r.stdout[:200])
-
 def send_video(file_path, caption):
     p = Path(file_path)
     if not p.exists():
@@ -75,59 +56,48 @@ def send_video(file_path, caption):
     print(r.stdout[:200])
 
 def main():
-    print("Enviando mensaje intro...")
+    print("Enviando intro de los 3 nuevos tipos...")
     send_message(
-        "🎬 <b>Ranuk Motion Forge — Ejemplos Generados para Redes y Web</b>\n\n"
-        "Emilio, acá tenés las muestras de los videos de 15 segundos creados en Remotion (React) "
-        "para promocionar nuestros proyectos en X y ranuk.dev:"
+        "🔥 <b>Nuevos Tipos de Video en Remotion (Variedad y Estilo Mockup)</b>\n\n"
+        "Emilio, creamos 3 arquetipos totalmente distintos según las categorías de Grok. "
+        "El primero recrea en movimiento el <b>mockup split-screen fotorrealista</b> que te gustó, "
+        "con cursor interactivo, tipeo en vivo y zoom:"
     )
     time.sleep(1.5)
 
-    # 1. DataCanvas BI
-    dc_video = DATACANVAS_DOCS / "datacanvas_promo_video.mp4"
-    if not dc_video.exists():
-        dc_video = FORGE_DIR / "dist/videos/datacanvas_promo_15s.mp4"
+    # 1. Feature Walkthrough (Archetype 3)
+    v1 = VIDEOS_DIR / "datacanvas_walkthrough_24s.mp4"
     send_video(
-        dc_video,
-        "📊 <b>[Video 1/3] DataCanvas BI</b>\n"
-        "• <i>ChatGPT MCP Extension</i>: Transforma CSVs en dashboards interactivos.\n"
-        "• DuckDB-WASM, Apache ECharts y exportación de reportes PDF ejecutivos.\n"
-        "• Duración: 15s · Sincronizado a 120 BPM · Full HD (1920x1080)."
+        v1,
+        "🖥️ <b>[Tipo 3: Feature Walkthrough · 24s · 1080p]</b>\n"
+        "• <b>Estilo Mockup Fotorrealista</b>: Split-screen de macOS con ChatGPT a la izquierda.\n"
+        "• Tipeo del prompt en tiempo real, panel MCP que se acopla con ECharts.\n"
+        "• <b>Cursor interactivo</b>: Se mueve, hace hover en las barras con tooltip, hace clic y activa el botón 'Export PDF'."
     )
     time.sleep(2)
 
-    # 2. Ranuk Profit
-    rp_video = VIDEOS_DIR / "ranuk-profit_promo_15s.mp4"
+    # 2. Launch Teaser (Archetype 2)
+    v2 = VIDEOS_DIR / "datacanvas_teaser_12s.mp4"
     send_video(
-        rp_video,
-        "📈 <b>[Video 2/3] Ranuk Profit (Trading Bot)</b>\n"
-        "• <i>Mesa de Operaciones Cuantitativa</i>: Detección de volatilidad y trailing stops.\n"
-        "• Terminal con métricas de P&L, curvas de ganancia y guardias de riesgo.\n"
-        "• 15s · Hard cuts cinéticos · Full HD (1920x1080)."
+        v2,
+        "⚡ <b>[Tipo 2: Launch Teaser Cinético · 12s · 1080p]</b>\n"
+        "• <b>Sin interfaz / Pura tipografía masiva</b>: Cortes agresivos al beat de 130 BPM.\n"
+        "• Bloques de color plano (amarillo, negro, azul eléctrico), cero caricatura, estilo tech-indie dev.\n"
+        "• Ideal para lanzamientos rápidos o anuncios de intriga en X."
     )
     time.sleep(2)
 
-    # 3. El Revelado
-    rv_video = VIDEOS_DIR / "reveal_promo_15s.mp4"
+    # 3. Vertical Reels (Archetype 7)
+    v3 = VIDEOS_DIR / "datacanvas_reels_9x16_15s.mp4"
     send_video(
-        rv_video,
-        "🛰️ <b>[Video 3/3] El Revelado</b>\n"
-        "• <i>Enigma Satelital Viral</i>: Baldosas orbitales diarias en alta resolución.\n"
-        "• Mapeo dinámico, especulación comunitaria y cronómetro de revelado.\n"
-        "• 15s · Full HD (1920x1080)."
-    )
-    time.sleep(2)
-
-    # 4. Poster mockup banner
-    mockup_img = DATACANVAS_DOCS / "datacanvas_promo_banner.jpg"
-    send_photo(
-        mockup_img,
-        "🖼️ <b>[Mockup de Producto] DataCanvas en ChatGPT</b>\n"
-        "• Integración split screen: Prompt en ChatGPT a la izquierda, inspector interactivo a la derecha.\n"
-        "• Banner listo para Twitter/X, landing page de ranuk.dev y OpenGraph."
+        v3,
+        "📱 <b>[Tipo 7: Anuncio Vertical 9:16 · 15s · 1080x1920]</b>\n"
+        "• <b>Formato Móvil para TikTok, Reels y Shorts</b>.\n"
+        "• Márgenes de seguridad superior e inferior para que la UI de la red social no tape nada.\n"
+        "• Hook gigante, simulación de app central y botón de sticker de acción pulsante."
     )
 
-    print("\n✓ Todos los ejemplos fueron enviados con éxito a tu Telegram.")
+    print("\n✓ Los 3 nuevos tipos fueron enviados con éxito a tu Telegram.")
 
 if __name__ == "__main__":
     main()
