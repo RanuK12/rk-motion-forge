@@ -4,6 +4,10 @@ import { MotionPromoVideo } from "./compositions/MotionPromoVideo";
 import { FeatureWalkthroughVideo } from "./compositions/FeatureWalkthroughVideo";
 import { LaunchTeaserVideo } from "./compositions/LaunchTeaserVideo";
 import { VerticalPromoVideo } from "./compositions/VerticalPromoVideo";
+import { RanukProfitTeaserVideo } from "./compositions/RanukProfitTeaserVideo";
+import { RanukProfitVerticalVideo } from "./compositions/RanukProfitVerticalVideo";
+import { RevealTeaserVideo } from "./compositions/RevealTeaserVideo";
+import { RevealVerticalVideo } from "./compositions/RevealVerticalVideo";
 import datacanvasConfig from "../products/datacanvas.json";
 import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
@@ -13,8 +17,7 @@ export const Root: React.FC = () => {
   return (
     <>
       {/* ============================================================== */}
-      {/* ARCHETYPE 3: PHOTOREALISTIC FEATURE WALKTHROUGH (24s, 1920x1080) */}
-      {/* UI real con zoom, cursor interactivo, drill-down y export PDF   */}
+      {/* 📊 1/3: DATACANVAS BI (ChatGPT MCP EXTENSION)                   */}
       {/* ============================================================== */}
       <Composition
         id="DataCanvasWalkthrough"
@@ -24,11 +27,6 @@ export const Root: React.FC = () => {
         width={1920}
         height={1080}
       />
-
-      {/* ============================================================== */}
-      {/* ARCHETYPE 2: LAUNCH TEASER (12s, 1920x1080)                    */}
-      {/* Tipografía masiva, colores planos, cortes ultra-rápidos al beat */}
-      {/* ============================================================== */}
       <Composition
         id="DataCanvasLaunchTeaser"
         component={LaunchTeaserVideo}
@@ -37,14 +35,49 @@ export const Root: React.FC = () => {
         width={1920}
         height={1080}
       />
-
-      {/* ============================================================== */}
-      {/* ARCHETYPE 7: VERTICAL AD 9:16 (15s, 1080x1920)                 */}
-      {/* Formato nativo para TikTok, Instagram Reels y YouTube Shorts    */}
-      {/* ============================================================== */}
       <Composition
         id="DataCanvasVerticalReels"
         component={VerticalPromoVideo}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+
+      {/* ============================================================== */}
+      {/* 📈 2/3: RANUK PROFIT (QUANTITATIVE TRADING BOT)                */}
+      {/* ============================================================== */}
+      <Composition
+        id="RanukProfitTeaser"
+        component={RanukProfitTeaserVideo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="RanukProfitVertical"
+        component={RanukProfitVerticalVideo}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+
+      {/* ============================================================== */}
+      {/* 🛰️ 3/3: EL REVELADO (SATELLITE MYSTERY TILE GAME)              */}
+      {/* ============================================================== */}
+      <Composition
+        id="RevealTeaser"
+        component={RevealTeaserVideo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="RevealVertical"
+        component={RevealVerticalVideo}
         durationInFrames={450}
         fps={30}
         width={1080}
