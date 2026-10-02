@@ -74,7 +74,7 @@ const SceneHook: React.FC<{ config: ProductConfig; accent: string }> = ({ config
         backgroundColor: "#FFFFFF",
         color: "#0A0A0A",
         fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-        padding: 80,
+        padding: 24,
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
@@ -103,7 +103,7 @@ const SceneHook: React.FC<{ config: ProductConfig; accent: string }> = ({ config
           <div style={{ fontSize: 82, fontWeight: 900, lineHeight: 1.05, letterSpacing: "-0.04em", display: "flex", flexWrap: "wrap", gap: "18px 24px" }}>
             {config.hook.words.map((w, idx) => {
               const wordSpring = spring({ frame: frame - idx * 6, fps, config: { damping: 15, mass: 0.6, stiffness: 220 } });
-              const translateY = interpolate(wordSpring, [0, 1], [40, 0]);
+              const translateY = interpolate(wordSpring, [0, 1], [80, 0]);
               const opacity = interpolate(wordSpring, [0, 1], [0, 1]);
               const isAccent = idx >= config.hook.words.length - 2;
               return (
@@ -147,7 +147,7 @@ const SceneFeatures: React.FC<{ config: ProductConfig; accent: string }> = ({ co
   const c2Rot = interpolate(c2Spring, [0, 1], [5, 1.5]);
 
   return (
-    <div style={{ width: 1920, height: 1080, backgroundColor: accent, color: "#FFFFFF", fontFamily: 'Inter, system-ui, sans-serif', padding: 80, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
+    <div style={{ width: 1080, height: 1920, backgroundColor: accent, color: "#FFFFFF", fontFamily: 'Inter, system-ui, sans-serif', padding: 24, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid rgba(255,255,255,0.3)", paddingBottom: 24 }}>
         <span style={{ fontSize: 24, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", backgroundColor: "#FFFFFF", color: accent, padding: "6px 14px", borderRadius: 6 }}>
           // 02 – CORE CAPABILITIES
@@ -157,7 +157,7 @@ const SceneFeatures: React.FC<{ config: ProductConfig; accent: string }> = ({ co
 
       <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
         {/* Card 1 */}
-        <div style={{ width: 1100, backgroundColor: "#FFFFFF", color: "#0A0A0A", borderRadius: 24, padding: "44px 56px", boxShadow: "0 30px 60px rgba(0,0,0,0.3)", border: "4px solid #0A0A0A", transform: `translateY(${c1Y - 70}px) rotate(${c1Rot}deg)`, position: "absolute", zIndex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ width: 620, backgroundColor: "#FFFFFF", color: "#0A0A0A", borderRadius: 24, padding: "44px 56px", boxShadow: "0 30px 60px rgba(0,0,0,0.3)", border: "4px solid #0A0A0A", transform: `translateY(${c1Y - 70}px) rotate(${c1Rot}deg)`, position: "absolute", zIndex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
             <DitherIcon type={f1.iconType as any} size={84} accent={accent} />
             <div>
@@ -223,7 +223,7 @@ const SceneProduct: React.FC<{ config: ProductConfig; accent: string }> = ({ con
   ];
 
   return (
-    <div style={{ width: 1920, height: 1080, backgroundColor: "#FFFFFF", color: "#0A0A0A", fontFamily: 'Inter, system-ui, sans-serif', padding: 80, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
+    <div style={{ width: 1080, height: 1920, backgroundColor: "#FFFFFF", color: "#0A0A0A", fontFamily: 'Inter, system-ui, sans-serif', padding: 24, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid #0A0A0A", paddingBottom: 24 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <span style={{ fontSize: 26, fontWeight: 800, textTransform: "uppercase", backgroundColor: "#0A0A0A", color: "#FFFFFF", padding: "6px 14px", borderRadius: 6 }}>
@@ -322,7 +322,7 @@ const SceneSystem: React.FC<{ config: ProductConfig; accent: string }> = ({ conf
   ];
 
   return (
-    <div style={{ width: 1920, height: 1080, backgroundColor: "#FFFFFF", color: "#0A0A0A", fontFamily: 'Inter, system-ui, sans-serif', padding: 80, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
+    <div style={{ width: 1080, height: 1920, backgroundColor: "#FFFFFF", color: "#0A0A0A", fontFamily: 'Inter, system-ui, sans-serif', padding: 24, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid #0A0A0A", paddingBottom: 24 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <span style={{ fontSize: 26, fontWeight: 800, textTransform: "uppercase", backgroundColor: "#0A0A0A", color: "#FFFFFF", padding: "6px 14px", borderRadius: 6 }}>
@@ -382,7 +382,7 @@ const ScenePhrase: React.FC<{ config: ProductConfig; accent: string }> = ({ conf
   const mascotScale = interpolate(mascotSpring, [0, 1], [0.8, 1]);
 
   return (
-    <div style={{ width: 1920, height: 1080, backgroundColor: "#0A0A0A", color: "#FFFFFF", fontFamily: 'Inter, system-ui, sans-serif', padding: 80, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
+    <div style={{ width: 1080, height: 1920, backgroundColor: "#0A0A0A", color: "#FFFFFF", fontFamily: 'Inter, system-ui, sans-serif', padding: 24, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid #262626", paddingBottom: 24 }}>
         <span style={{ fontSize: 24, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", backgroundColor: accent, color: "#FFFFFF", padding: "6px 14px", borderRadius: 6 }}>
           // 05 – MISSION
@@ -428,7 +428,7 @@ const SceneOutro: React.FC<{ config: ProductConfig; accent: string }> = ({ confi
   const btnPulse = Math.sin(frame * 0.15) * 2;
 
   return (
-    <div style={{ width: 1920, height: 1080, backgroundColor: "#FFFFFF", color: "#0A0A0A", fontFamily: 'Inter, system-ui, sans-serif', padding: 80, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", textAlign: "center", overflow: "hidden" }}>
+    <div style={{ width: 1080, height: 1920, backgroundColor: "#FFFFFF", color: "#0A0A0A", fontFamily: 'Inter, system-ui, sans-serif', padding: 24, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", textAlign: "center", overflow: "hidden" }}>
       <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid #0A0A0A", paddingBottom: 20 }}>
         <span style={{ fontSize: 22, fontWeight: 800, textTransform: "uppercase", backgroundColor: "#0A0A0A", color: "#FFFFFF", padding: "6px 14px", borderRadius: 6 }}>
           // 06 – CALL TO ACTION

@@ -60,6 +60,19 @@ export const Root: React.FC = () => {
           config: datacanvasConfig as unknown as ProductConfig,
         }}
       />
+
+      {/* 5. Vertical Composition for TikTok/Shorts/Reels (9:16) */}
+      <Composition
+        id="ForgeCustomVideoVertical"
+        component={MotionPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          config: datacanvasConfig as unknown as ProductConfig,
+        }}
+      />
     </>
   );
 };
