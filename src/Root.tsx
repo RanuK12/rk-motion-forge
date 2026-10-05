@@ -8,6 +8,7 @@ import { RanukProfitTeaserVideo } from "./compositions/RanukProfitTeaserVideo";
 import { RanukProfitVerticalVideo } from "./compositions/RanukProfitVerticalVideo";
 import { RevealTeaserVideo } from "./compositions/RevealTeaserVideo";
 import { RevealVerticalVideo } from "./compositions/RevealVerticalVideo";
+import { MosaicVideo } from "./compositions/MosaicVideo";
 import datacanvasConfig from "../products/datacanvas.json";
 import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
@@ -121,6 +122,24 @@ export const Root: React.FC = () => {
         height={1080}
         defaultProps={{
           config: revealConfig as unknown as ProductConfig,
+        }}
+      />
+
+      {/* ============================================================== */}
+      {/* 🖼️ ARCHETYPE: MOSAIC WALL (20s, 1920x1080)                     */}
+      {/* Muro de capturas con zoom out continuo y freeze general        */}
+      {/* ============================================================== */}
+      <Composition
+        id="Mosaic"
+        component={MosaicVideo}
+        durationInFrames={600}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          productName: "Ranuk IT Solutions",
+          finalPhrase: "366 products. one grid.",
+          url: "ranuk.dev",
         }}
       />
     </>
