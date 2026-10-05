@@ -37,13 +37,14 @@ export const MosaicVideo: React.FC<MosaicVideoProps> = ({
   const heroImage = imageList[0] || "datacanvas_screenshot.png";
 
   // Grid layout parameters
-  const cols = 4;
+  // 10 columns x 8 rows = 80 captures fills widescreen 16:9 canvas beautifully
+  const cols = 10;
   const gap = 8;
   const numRows = Math.ceil(imageList.length / cols);
 
-  // Cell aspect ratio 16:10 -> e.g. 400px width x 250px height
-  const cellWidth = 440;
-  const cellHeight = 275; // 440 * 10 / 16 = 275px (16:10 exact)
+  // Cell aspect ratio 16:10 -> e.g. 320px width x 200px height
+  const cellWidth = 320;
+  const cellHeight = 200; // 320 * 10 / 16 = 200px (16:10 exact)
 
   const totalGridWidth = cols * cellWidth + (cols - 1) * gap;
   const totalGridHeight = numRows * cellHeight + (numRows - 1) * gap;
@@ -58,62 +59,95 @@ export const MosaicVideo: React.FC<MosaicVideoProps> = ({
 
   // Zoom scales
   // Initial scale: hero cell fills 1920x1080 viewport
-  const initialScale = Math.max(width / cellWidth, height / cellHeight); // ~4.36
-  // Final scale: all 80 captures visible in viewport with padding for bottom text
-  // Target visible grid height ~ 820px out of 1080px
+  const initialScale = Math.max(width / cellWidth, height / cellHeight); // 6.0
+  // Mid scale at 8s (frame 240): exactly 4 columns visible across viewport width
+  const visibleColsInScene2 = 4;
+  const width4Cols = visibleColsInScene2 * cellWidth + (visibleColsInScene2 - 1) * gap;
+  const midScale = (width - 120) / width4Cols;
+  // Final scale at 16s (frame 480): all 80 captures visible in viewport with padding for bottom text
   const targetScale = Math.min(
-    (width - 80) / totalGridWidth,
+    (width - 100) / totalGridWidth,
     (height - 240) / totalGridHeight
-  ); // ~0.14 - 0.16
+  );
 
-  // Smooth continuous zoom out between frame 90 and frame 480 (ease in-out, NO bounce)
-  const zoomProgress = interpolate(frame, [90, 480], [0, 1], {
+  // Mid-stage center (centered around hero cell area expanding to 4 columns, ~2.5 rows)
+  const midCenterX = width4Cols / 2;
+  const midCenterY = cellHeight * 1.5 + gap;
+
+  // Two-stage continuous zoom in log scale (ease-in-out, zero bounce)
+  let currentScale = initialScale;
+  let currentCenterX = heroCenterX;
+  let currentCenterY = heroCenterY;
+
+  if (frame <= 90) {
+    currentScale = initialScale;
+    currentCenterX = heroCenterX;
+    currentCenterY = heroCenterY;
+  } else if (frame <= 240) {
+    // Stage 1 (3s - 8s): Zoom out from hero cell into 4 columns
+    const t = interpolate(frame, [90, 240], [0, 1], {
+      easing: Easing.inOut(Easing.cubic),
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+    const logScale = interpolate(
+      t,
+      [0, 1],
+      [Math.log(initialScale), Math.log(midScale)]
+    );
+    currentScale = Math.exp(logScale);
+    currentCenterX = interpolate(t, [0, 1], [heroCenterX, midCenterX]);
+    currentCenterY = interpolate(t, [0, 1], [heroCenterY, midCenterY]);
+  } else if (frame < 480) {
+    // Stage 2 (8s - 16s): Zoom out to reveal the full wall of 80 captures
+    const t = interpolate(frame, [240, 480], [0, 1], {
+      easing: Easing.inOut(Easing.cubic),
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+    const logScale = interpolate(
+      t,
+      [0, 1],
+      [Math.log(midScale), Math.log(targetScale)]
+    );
+    currentScale = Math.exp(logScale);
+    currentCenterX = midCenterX;
+    currentCenterY = interpolate(t, [0, 1], [midCenterY, fullGridCenterY]);
+  } else {
+    // Freeze at full general shot (16s - 20s)
+    currentScale = targetScale;
+    currentCenterX = fullGridCenterX;
+    currentCenterY = fullGridCenterY;
+  }
+
+  // Translate grid so that (currentCenterX, currentCenterY) is mapped to screen center
+  const screenCenterX = width / 2;
+  // Shift grid slightly upwards when fully zoomed out to give space for bottom text
+  const yShiftProgress = interpolate(frame, [240, 480], [0, 1], {
     easing: Easing.inOut(Easing.cubic),
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-
-  const currentScale = interpolate(
-    zoomProgress,
-    [0, 1],
-    [initialScale, targetScale]
-  );
-
-  const currentCenterX = interpolate(
-    zoomProgress,
-    [0, 1],
-    [heroCenterX, fullGridCenterX]
-  );
-
-  const currentCenterY = interpolate(
-    zoomProgress,
-    [0, 1],
-    [heroCenterY, fullGridCenterY]
-  );
-
-  // Translate grid so that (currentCenterX, currentCenterY) is mapped to screen center
-  const screenCenterX = width / 2;
-  // In the final scene, shift grid slightly upwards (e.g. -40px) to give space for bottom text
-  const screenCenterYShift = interpolate(zoomProgress, [0, 1], [0, -50]);
+  const screenCenterYShift = interpolate(yShiftProgress, [0, 1], [0, -50]);
   const screenCenterY = height / 2 + screenCenterYShift;
 
   const translateX = screenCenterX - currentCenterX * currentScale;
   const translateY = screenCenterY - currentCenterY * currentScale;
 
-  // Label bottom-left opacity (0-3s, fades out as zoom begins)
-  const labelOpacity = interpolate(frame, [0, 10, 85, 95], [0, 1, 1, 0], {
+  // Label bottom-left opacity (0-3s, visible from frame 0, fades as zoom begins)
+  const labelOpacity = interpolate(frame, [80, 95], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Cursor opacity (still cursor 0-3s, fades as zoom starts)
-  const cursorOpacity = interpolate(frame, [0, 15, 80, 90], [0, 1, 1, 0], {
+  // Cursor opacity (still cursor 0-3s, visible from frame 0, fades as zoom starts)
+  const cursorOpacity = interpolate(frame, [80, 95], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Scene 4 final text opacity (16-20s, frames 480-600)
-  const finalTextOpacity = interpolate(frame, [480, 500], [0, 1], {
+  // Scene 4 final text opacity (16-20s, frames 480-600: instant beat cut to freeze)
+  const finalTextOpacity = interpolate(frame, [480, 486], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -130,7 +164,7 @@ export const MosaicVideo: React.FC<MosaicVideoProps> = ({
         overflow: "hidden",
       }}
     >
-      <Audio src={staticFile("music.mp3")} />
+      <Audio src={staticFile("music.mp3")} loop />
 
       {/* Grid Canvas with smooth zoom-out transform */}
       <div
