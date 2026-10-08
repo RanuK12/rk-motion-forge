@@ -10,3 +10,5 @@ __pycache__/
 .aider*
 .coverage
 .pytest_cache/
+out/
+public/shots/
