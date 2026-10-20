@@ -21,7 +21,7 @@ from pathlib import Path
 import urllib.request
 
 HOME = Path.home()
-FORGE_DIR = HOME / "Desktop/Oficina_Ranuk/rk-motion-forge"
+FORGE_DIR = Path(__file__).resolve().parent.parent
 VIDEOS_DIR = FORGE_DIR / "dist/videos"
 POST_SCRIPT = HOME / "Apps/ranukita-bridge/scripts/rk-x-post.py"
 GUARD_DIR = HOME / "Apps/ranukita-bridge/scripts"
@@ -39,63 +39,28 @@ PROMOS = [
     {
         "id": "datacanvas_walkthrough",
         "product": "DataCanvas BI",
-        "format": "Feature Walkthrough (24s · 1080p)",
-        "video": VIDEOS_DIR / "datacanvas_walkthrough_24s.mp4",
+        "format": "Motion Design Walkthrough (15s · 1080p)",
+        "video": VIDEOS_DIR / "datacanvas_promo_15s.mp4",
         "text": (
-            "Still waiting on static matplotlib PNGs inside ChatGPT?\n\n"
-            "We built DataCanvas BI: a native Model Context Protocol extension that transforms tabular data into reactive in-browser dashboards with DuckDB-WASM and Apache ECharts.\n\n"
-            "Explore metrics live and export executive PDF reports in seconds.\n\n"
-            "Try the Pro pass at https://buy.stripe.com/4gMfZaaQf3A2e6vdjf4Ja01 today."
+            "Still waiting on static matplotlib PNGs inside ChatGPT? DataCanvas BI turns CSVs into interactive client-side DuckDB-WASM dashboards with Apache ECharts and 1-click PDF export. https://buy.stripe.com/4gMfZaaQf3A2e6vdjf4Ja01"
         )
     },
     {
         "id": "ranuk_profit_teaser",
         "product": "Ranuk Profit",
         "format": "Trading Terminal Teaser (15s · 1080p)",
-        "video": VIDEOS_DIR / "ranuk_profit_teaser_15s.mp4",
+        "video": VIDEOS_DIR / "ranuk-profit_promo_15s.mp4",
         "text": (
-            "Discretionary crypto trading loses to discipline and latency.\n\n"
-            "We built Ranuk Profit: an algorithmic trading daemon executing quantitative volatility breakout strategies and dynamic trailing stops 24/7 on Binance.\n\n"
-            "Automated risk limits, zero emotional tilt, and sub-second execution.\n\n"
-            "Explore the open source repo at https://github.com/RanuK12/binance-scalper-bot now."
+            "Discretionary crypto trading loses to discipline and latency. Ranuk Profit runs quantitative breakout strategies and dynamic trailing stops 24/7 on Binance with strict state locks. https://github.com/RanuK12/Ranuk-Profit-Bot"
         )
     },
     {
         "id": "reveal_teaser",
         "product": "El Revelado",
         "format": "Mystery Satellite Teaser (15s · 1080p)",
-        "video": VIDEOS_DIR / "reveal_teaser_15s.mp4",
+        "video": VIDEOS_DIR / "reveal_promo_15s.mp4",
         "text": (
-            "You are not buying the picture.\n\n"
-            "Everyone gets to see that for free the moment it is finished. What nobody else can have is the tile with your name on it.\n\n"
-            "A dynamic satellite puzzle where every uncovered square reveals the hidden territory.\n\n"
-            "Claim your coordinates at https://reveal.ranuk.dev today."
-        )
-    },
-    {
-        "id": "mosaic_studio_wall",
-        "product": "Ranuk IT Solutions",
-        "format": "80-Solution Mosaic Wall (20s · 1080p)",
-        "video": VIDEOS_DIR / "mosaic_wall_20s.mp4",
-        "text": (
-            "From trading daemons to native MCP extensions, we do not build prototypes. We ship production software.\n\n"
-            "Here is the wall of solutions, internal tooling, and client pipelines deployed by Ranuk IT Solutions this season.\n\n"
-            "Evolving from single scripts to autonomous systems.\n\n"
-            "Explore our full engineering portfolio at https://ranuk.dev now."
-        )
-    },
-    {
-        "id": "datacanvas_kinetic_teaser",
-        "product": "DataCanvas BI",
-        "format": "Kinetic Launch Teaser (12s · 1080p)",
-        "video": VIDEOS_DIR / "datacanvas_teaser_12s.mp4",
-        "text": (
-            "For engineers, consultants, and founders analyzing data in ChatGPT:\n\n"
-            "DataCanvas BI turns raw CSV tables into interactive client-ready dashboards in under ten seconds.\n"
-            "• Local DuckDB-WASM engine with zero backend data transmission\n"
-            "• Reactive Apache ECharts filters\n"
-            "• One-click executive PDF report export\n\n"
-            "Connect your workflow at https://buy.stripe.com/4gMfZaaQf3A2e6vdjf4Ja01 directly."
+            "You are not buying a generic picture - you claim the exact tile with your name coordinates on it. A dynamic satellite puzzle where every square reveals hidden territory. https://reveal.ranuk.dev"
         )
     }
 ]
