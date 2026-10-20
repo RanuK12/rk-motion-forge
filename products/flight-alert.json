@@ -1,0 +1,79 @@
+{
+  "id": "flight-alert",
+  "name": "Flight Price Alert",
+  "tagline": "Automated flight price prediction radar",
+  "audience": "Remote Workers & Travel Engineers",
+  "colors": {
+    "background": "#0B132B",
+    "accent": "#00E5FF",
+    "text": "#F0F4F8"
+  },
+  "hook": {
+    "label": "// 01 – HOOK",
+    "words": ["Still", "checking", "Google", "Flights", "manually", "daily?"],
+    "taglineBottom": "AUTONOMOUS AIRFARE RADAR"
+  },
+  "features": [
+    {
+      "tag": "// FEATURE 01 · 24/7 ENGINE",
+      "name": "Multi-Carrier Scraping",
+      "benefit": "Continuous background price monitoring across route legs",
+      "metricLabel": "SCAN CADENCE",
+      "metricValue": "15 MIN",
+      "iconType": "chart"
+    },
+    {
+      "tag": "// FEATURE 02 · INSTANT PUSH",
+      "name": "Instant Telegram Push",
+      "benefit": "Real-time alert the second an airline drops its seat price",
+      "metricLabel": "AVG SAVINGS",
+      "metricValue": "$340",
+      "iconType": "shield"
+    }
+  ],
+  "productShowcase": {
+    "headlinePrefix": "Flight Radar detects drops",
+    "headlineHighlight": "instantly.",
+    "bullets": [
+      "24/7 multi-carrier schedule monitor",
+      "Zero manual searching or stale cookies",
+      "Immediate Telegram notification on fare drops"
+    ],
+    "mockup": {
+      "windowTitle": "Flight Price Radar Inspector",
+      "actionBtnText": "Set Route Alert",
+      "kpis": [
+        { "label": "Rutas Activas", "value": "18", "sub": "Monitoreo 24/7" },
+        { "label": "Tarifa Más Baja", "value": "$420", "sub": "↓ 42% descuento", "color": "#00E5FF" },
+        { "label": "Tiempo a Alerta", "value": "< 10s", "sub": "Push inmediato", "color": "#10B981" }
+      ],
+      "chart": {
+        "title": "Historial de Tarifas EZE - MAD",
+        "badge": "Tendencia Bajista",
+        "bars": [
+          { "label": "Lun", "value": 850 },
+          { "label": "Mar", "value": 780 },
+          { "label": "Mié", "value": 720 },
+          { "label": "Jue", "value": 610 },
+          { "label": "Vie", "value": 530 },
+          { "label": "Hoy", "value": 420 }
+        ]
+      }
+    }
+  },
+  "systemPipeline": [
+    { "step": "// 01 · INGEST", "title": "Headless Airline Scrapers", "metric": "18 routes", "sub": "Continuous background fare fetch" },
+    { "step": "// 02 · TIME-SERIES", "title": "Historical Baseline", "metric": "15 min scan", "sub": "Detect price anomalies vs history" },
+    { "step": "// 03 · DECISION", "title": "Anomaly Engine", "metric": "↓ 42% drop", "sub": "Verify booking fare validity" },
+    { "step": "// 04 · DISPATCH", "title": "Instant Telegram Push", "metric": "< 10s alert", "sub": "Direct flight booking checkout URL" }
+  ],
+  "mission": {
+    "label": "// ARCHITECTURE TRUTH",
+    "quote": "Airlines use dynamic pricing against you. Automated workers level the playing field."
+  },
+  "outro": {
+    "cta": "Set your flight radar",
+    "url": "github.com/RanuK12/Flight-Price-Alert",
+    "btnText": "Get the Open Source Repo"
+  }
+}

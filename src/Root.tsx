@@ -9,9 +9,14 @@ import { RanukProfitVerticalVideo } from "./compositions/RanukProfitVerticalVide
 import { RevealTeaserVideo } from "./compositions/RevealTeaserVideo";
 import { RevealVerticalVideo } from "./compositions/RevealVerticalVideo";
 import { MosaicVideo } from "./compositions/MosaicVideo";
+import { FlightRadarVideo } from "./compositions/FlightRadarVideo";
+import { AuditBotInspectorVideo } from "./compositions/AuditBotInspectorVideo";
+import { TerminalHackerVideo } from "./compositions/TerminalHackerVideo";
 import datacanvasConfig from "../products/datacanvas.json";
 import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
+import flightAlertConfig from "../products/flight-alert.json";
+import auditBotConfig from "../products/auditbot.json";
 import { ProductConfig } from "./types/product";
 
 export const Root: React.FC = () => {
@@ -86,6 +91,42 @@ export const Root: React.FC = () => {
       />
 
       {/* ============================================================== */}
+      {/* ✈️ 4/5: FLIGHT PRICE ALERT (AUTONOMOUS AIR TRAFFIC RADAR)      */}
+      {/* ============================================================== */}
+      <Composition
+        id="FlightRadar"
+        component={FlightRadarVideo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* ============================================================== */}
+      {/* 🛡️ 5/5: AUDITBOT (HEADLESS DEVTOOLS WCAG 2.1 INSPECTOR)        */}
+      {/* ============================================================== */}
+      <Composition
+        id="AuditBotInspector"
+        component={AuditBotInspectorVideo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* ============================================================== */}
+      {/* 💻 DEVELOPER ARCHETYPE: TERMINAL HACKER (CLI / TUI DEMO)       */}
+      {/* ============================================================== */}
+      <Composition
+        id="TerminalHacker"
+        component={TerminalHackerVideo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* ============================================================== */}
       {/* ARCHETYPE 1: PRODUCT PROMOS (15s, 1920x1080)                   */}
       {/* Hook, 2 features, mockup, sistema, frase, CTA                 */}
       {/* ============================================================== */}
@@ -122,6 +163,30 @@ export const Root: React.FC = () => {
         height={1080}
         defaultProps={{
           config: revealConfig as unknown as ProductConfig,
+        }}
+      />
+
+      <Composition
+        id="FlightAlertVideo"
+        component={MotionPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          config: flightAlertConfig as unknown as ProductConfig,
+        }}
+      />
+
+      <Composition
+        id="AuditBotVideo"
+        component={MotionPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          config: auditBotConfig as unknown as ProductConfig,
         }}
       />
 

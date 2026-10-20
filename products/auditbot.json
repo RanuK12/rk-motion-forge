@@ -1,0 +1,78 @@
+{
+  "id": "auditbot",
+  "name": "AuditBot",
+  "tagline": "Automated WCAG 2.1 & Technical SEO Auditor",
+  "audience": "Developers & Agencies",
+  "colors": {
+    "background": "#0D1117",
+    "accent": "#58A6FF",
+    "text": "#E6EDF3"
+  },
+  "hook": {
+    "label": "// 01 – HOOK",
+    "words": ["Is", "your", "site", "compliant", "before", "the", "notice?"],
+    "taglineBottom": "ACCESSIBILITY & AUDIT ENGINE"
+  },
+  "features": [
+    {
+      "tag": "// FEATURE 01 · DOM INSPECTION",
+      "name": "Headless DOM Evaluator",
+      "benefit": "Inspects real client-side rendered elements and ARIA trees",
+      "metricLabel": "WCAG STANDARD",
+      "metricValue": "2.1 AA",
+      "iconType": "shield"
+    },
+    {
+      "tag": "// FEATURE 02 · EXECUTIVE PDF",
+      "name": "Instant Actionable Audit",
+      "benefit": "Pinpoints exact DOM lines and code remediations in seconds",
+      "metricLabel": "AUDIT TIME",
+      "metricValue": "< 12s",
+      "iconType": "database"
+    }
+  ],
+  "productShowcase": {
+    "headlinePrefix": "AuditBot delivers full compliance",
+    "headlineHighlight": "reports.",
+    "bullets": [
+      "Automated WCAG 2.1 AA validation",
+      "Headless client-rendered DOM analyzer",
+      "Actionable engineering remediation diffs"
+    ],
+    "mockup": {
+      "windowTitle": "AuditBot Inspector v2.4",
+      "actionBtnText": "Export WCAG Audit",
+      "kpis": [
+        { "label": "Elementos Auditados", "value": "1,420", "sub": "100% árbol DOM" },
+        { "label": "Puntaje WCAG", "value": "98/100", "sub": "Nivel AA Certificado", "color": "#10B981" },
+        { "label": "Alertas Críticas", "value": "0", "sub": "Sin riesgo legal", "color": "#58A6FF" }
+      ],
+      "chart": {
+        "title": "Distribución de Cumplimiento",
+        "badge": "Pass WCAG 2.1",
+        "bars": [
+          { "label": "Contraste", "value": 100 },
+          { "label": "ARIA", "value": 96 },
+          { "label": "Teclado", "value": 100 },
+          { "label": "Imágenes", "value": 94 },
+          { "label": "Semántica", "value": 98 }
+        ]
+      }
+    }
+  },
+  "systemPipeline": [
+    { "step": "// 01 · CRAWL", "title": "Headless Browser Fleet", "metric": "1,420 nodes", "sub": "Client-rendered DOM execution" },
+    { "step": "// 02 · EXTRACT", "title": "Accessibility Tree", "metric": "100% parsed", "sub": "Serialize computed ARIA states" },
+    { "step": "// 03 · EVALUATE", "title": "WCAG Rule Engine", "metric": "84 rules", "sub": "Zero false positive heuristic" },
+    { "step": "// 04 · REPORT", "title": "Remediation Engine", "metric": "< 12s PDF", "sub": "Direct engineering code patches" }
+  ],
+  "mission": {
+    "label": "// ENGINEERING ETHOS",
+    "quote": "Web accessibility is not an afterthought. It is basic software quality."
+  },
+  "outro": {
+    "cta": "Audit your web app",
+    "url": "github.com/RanuK12/AuditBot",
+    "btnText": "Get AuditBot Open Source"
+  }
+}

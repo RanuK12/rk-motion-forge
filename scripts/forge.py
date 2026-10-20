@@ -21,6 +21,9 @@ COMPOSITIONS = {
     "datacanvas": {"comp": "DataCanvasVideo", "base_json": "datacanvas", "name": "DataCanvas BI (Standard Promo)"},
     "ranuk-profit": {"comp": "RanukProfitVideo", "base_json": "ranuk-profit", "name": "Ranuk Profit (Standard Promo)"},
     "reveal": {"comp": "RevealVideo", "base_json": "reveal", "name": "El Revelado (Standard Promo)"},
+    "flight-alert": {"comp": "FlightRadar", "base_json": "flight-alert", "name": "Flight Price Alert (Autonomous Airfare Radar)"},
+    "auditbot": {"comp": "AuditBotInspector", "base_json": "auditbot", "name": "AuditBot (DevTools WCAG 2.1 Inspector)"},
+    "terminal-hacker": {"comp": "TerminalHacker", "base_json": None, "name": "Terminal Hacker (Developer CLI Session)"},
 
     # Arquetipo 2: Photorealistic Feature Walkthrough (24s, 1920x1080, split-screen + live typing + cursor click)
     "datacanvas-walkthrough": {"comp": "DataCanvasWalkthrough", "base_json": "datacanvas", "name": "DataCanvas Feature Walkthrough (ChatGPT Split-Screen)"},

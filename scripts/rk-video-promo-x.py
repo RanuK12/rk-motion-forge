@@ -16,6 +16,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 import urllib.request
@@ -37,30 +38,61 @@ except ImportError:
 
 PROMOS = [
     {
+        "id": "flight_alert_radar",
+        "product": "Flight Price Alert",
+        "format": "Autonomous Airfare Radar (15s · 1080p)",
+        "video": VIDEOS_DIR / "flight_radar_custom.mp4",
+        "text": (
+            "Tired of airlines bumping fares when you refresh. Built an autonomous radar polling 48 carriers 24/7. When prices drop >40%, it pushes an instant alert to Telegram with direct booking links. Open source. https://github.com/RanuK12/Flight-Price-Alert"
+        ),
+        "thread": [
+            "Tired of airlines bumping fares when you refresh. Built an autonomous radar polling 48 carriers 24/7. When prices drop >40%, it pushes an instant alert to Telegram with direct booking links. Open source. https://github.com/RanuK12/Flight-Price-Alert",
+            "Under the hood: headless Python daemon querying ITA Matrix and direct carrier APIs, cache invalidation on dynamic fare buckets, and instant Telegram bot delivery. Zero third-party trackers, runs locally or on a cheap VPS."
+        ]
+    },
+    {
+        "id": "auditbot_compliance",
+        "product": "AuditBot",
+        "format": "DevTools WCAG 2.1 Inspector (15s · 1080p)",
+        "video": VIDEOS_DIR / "auditbot_inspector_custom.mp4",
+        "text": (
+            "Is your web app compliant before a demand letter lands. AuditBot runs headless DOM inspection against 84 WCAG 2.1 rules and generates executive PDF remediation reports in 12s. Open source CLI. https://github.com/RanuK12/AuditBot"
+        )
+    },
+    {
         "id": "datacanvas_walkthrough",
         "product": "DataCanvas BI",
-        "format": "Motion Design Walkthrough (15s · 1080p)",
-        "video": VIDEOS_DIR / "datacanvas_promo_15s.mp4",
+        "format": "Screen Studio MCP Walkthrough (24s · 1080p)",
+        "video": VIDEOS_DIR / "datacanvas_walkthrough_custom.mp4",
         "text": (
-            "Still waiting on static matplotlib PNGs inside ChatGPT? DataCanvas BI turns CSVs into interactive client-side DuckDB-WASM dashboards with Apache ECharts and 1-click PDF export. https://buy.stripe.com/4gMfZaaQf3A2e6vdjf4Ja01"
+            "Still waiting on static charts inside ChatGPT. DataCanvas BI connects via MCP to turn CSV files into interactive DuckDB dashboards with Apache ECharts and instant PDF exports. Built for developers. https://github.com/RanuK12/rk-mcp-datacanvas"
         )
     },
     {
         "id": "ranuk_profit_teaser",
         "product": "Ranuk Profit",
-        "format": "Trading Terminal Teaser (15s · 1080p)",
-        "video": VIDEOS_DIR / "ranuk-profit_promo_15s.mp4",
+        "format": "Cyberpunk Trading Terminal (15s · 1080p)",
+        "video": VIDEOS_DIR / "ranuk_profit_custom.mp4",
         "text": (
-            "Discretionary crypto trading loses to discipline and latency. Ranuk Profit runs quantitative breakout strategies and dynamic trailing stops 24/7 on Binance with strict state locks. https://github.com/RanuK12/Ranuk-Profit-Bot"
+            "Discretionary crypto trading loses to emotion and latency. Ranuk Profit runs quantitative breakout strategies and dynamic trailing stops 24/7 on Binance with strict state locks. Open source. https://github.com/RanuK12/Ranuk-Profit-Bot"
         )
     },
     {
         "id": "reveal_teaser",
         "product": "El Revelado",
-        "format": "Mystery Satellite Teaser (15s · 1080p)",
-        "video": VIDEOS_DIR / "reveal_promo_15s.mp4",
+        "format": "Satellite Mystery Tile HUD (15s · 1080p)",
+        "video": VIDEOS_DIR / "reveal_teaser_custom.mp4",
         "text": (
-            "You are not buying a generic picture - you claim the exact tile with your name coordinates on it. A dynamic satellite puzzle where every square reveals hidden territory. https://reveal.ranuk.dev"
+            "Tired of generic digital collectibles. The Reveal is a dynamic satellite puzzle where you claim exact geographic coordinates on an orbital grid to uncover hidden territory in real time. https://reveal.ranuk.dev"
+        )
+    },
+    {
+        "id": "terminal_hacker",
+        "product": "Ranuk Motion Forge",
+        "format": "Ghostty Developer CLI Session (15s · 1080p)",
+        "video": VIDEOS_DIR / "terminal_hacker_custom.mp4",
+        "text": (
+            "Modern developer tools should feel instantaneous. Ranuk Forge compiles multi-format 60 FPS motion videos directly from code on a local Mac Mini M-series in under 5 seconds. Engineered for speed. https://github.com/RanuK12"
         )
     }
 ]
@@ -128,9 +160,20 @@ def validate_all_promos():
 
         # 2. Guard validation
         if rk_x_guard:
-            err = rk_x_guard.revisar(p["text"], tipo="tweet")
+            err = rk_x_guard.revisar(p["text"], tipo="tweet", cuenta="ranuk_dev")
             if err:
                 errors.append(f"Promo {idx} ({p['id']}): Guard rejected text: {err}")
+            err_guia = rk_x_guard.guia_estilo(p["text"])
+            if err_guia:
+                errors.append(f"Promo {idx} ({p['id']}): Guia estilo rejected text: {err_guia}")
+            if p.get("thread"):
+                for t_idx, t_text in enumerate(p["thread"]):
+                    err_t = rk_x_guard.revisar(t_text, tipo="tweet", cuenta="ranuk_dev")
+                    if err_t:
+                        errors.append(f"Promo {idx} ({p['id']}) thread #{t_idx+1}: Guard rejected: {err_t}")
+                    err_gt = rk_x_guard.guia_estilo(t_text)
+                    if err_gt:
+                        errors.append(f"Promo {idx} ({p['id']}) thread #{t_idx+1}: Guia rejected: {err_gt}")
     return errors
 
 def main():
@@ -221,18 +264,35 @@ def main():
         tg_notify(f"❌ <b>Error Video Promo X</b>: {err_msg}")
         sys.exit(1)
 
-    cmd = [
-        sys.executable,
-        str(POST_SCRIPT),
-        "--account", "ranuk_dev",
-        "--text", promo["text"],
-        "--video", str(video_path)
-    ]
+    thread_file_path = None
+    if promo.get("thread") and len(promo["thread"]) > 1:
+        thread_content = "\n---\n".join(promo["thread"])
+        tf = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False)
+        tf.write(thread_content)
+        tf.close()
+        thread_file_path = tf.name
+        cmd = [
+            sys.executable,
+            str(POST_SCRIPT),
+            "--account", "ranuk_dev",
+            "--thread-file", thread_file_path,
+            "--video", str(video_path)
+        ]
+    else:
+        cmd = [
+            sys.executable,
+            str(POST_SCRIPT),
+            "--account", "ranuk_dev",
+            "--text", promo["text"],
+            "--video", str(video_path)
+        ]
 
     print(f"Ejecutando {POST_SCRIPT.name} con cuenta @ranuk_dev...")
     start_t = time.time()
     res = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
     dur = time.time() - start_t
+    if thread_file_path:
+        Path(thread_file_path).unlink(missing_ok=True)
     print(res.stdout)
     if res.stderr:
         print(res.stderr)
