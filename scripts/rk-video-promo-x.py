@@ -71,7 +71,7 @@ def tg_notify(msg: str):
     try:
         cfg = json.loads(TG_CONFIG.read_text())
         token = cfg.get("bot_token") or cfg.get("token") or cfg.get("channels", {}).get("telegram", {}).get("botToken")
-        chat = cfg.get("chat_id", 8107555656)
+        chat = cfg.get("chat_id") or cfg.get("channels", {}).get("telegram", {}).get("chatId") or 8107555656
         if not token:
             return
         url = f"https://api.telegram.org/bot{token}/sendMessage"
@@ -80,6 +80,28 @@ def tg_notify(msg: str):
         urllib.request.urlopen(req, timeout=10)
     except Exception as e:
         print(f"[TG Warning] {e}")
+
+def tg_send_video(file_path: Path, caption: str):
+    if not TG_CONFIG.exists():
+        return
+    try:
+        cfg = json.loads(TG_CONFIG.read_text())
+        token = cfg.get("bot_token") or cfg.get("token") or cfg.get("channels", {}).get("telegram", {}).get("botToken")
+        chat = cfg.get("chat_id") or cfg.get("channels", {}).get("telegram", {}).get("chatId") or 8107555656
+        if not token or not file_path.exists():
+            return
+        cmd = [
+            "curl", "-s", "-X", "POST",
+            f"https://api.telegram.org/bot{token}/sendVideo",
+            "-F", f"chat_id={chat}",
+            "-F", f"video=@{str(file_path)}",
+            "-F", f"caption={caption}",
+            "-F", "supports_streaming=true",
+            "-F", "parse_mode=HTML"
+        ]
+        subprocess.run(cmd, capture_output=True, timeout=120)
+    except Exception as e:
+        print(f"[TG Video Warning] {e}")
 
 def load_state():
     if STATE_FILE.exists():
@@ -179,8 +201,18 @@ def main():
     print(promo["text"])
     print("==================================================")
 
+    # Enviar prueba del video a Telegram siempre antes de postear o en dry-run
+    caption_preview = (
+        f"🎬 <b>Prueba de Video Promocional para X (@ranuk_dev)</b>\n\n"
+        f"• <b>Producto:</b> {promo['product']}\n"
+        f"• <b>Formato:</b> {promo['format']}\n"
+        f"• <b>Texto a publicar:</b>\n<i>{promo['text']}</i>"
+    )
+    print(f"Enviando prueba del video a Telegram ({video_path.name})...")
+    tg_send_video(video_path, caption_preview)
+
     if args.dry_run:
-        print("✓ [DRY-RUN EXITOSO] El video existe, el texto cumple con rk_x_guard y el post está listo.")
+        print("✓ [DRY-RUN EXITOSO] El video existe, el texto cumple con rk_x_guard y se envió la prueba a Telegram.")
         return
 
     if not POST_SCRIPT.exists():
