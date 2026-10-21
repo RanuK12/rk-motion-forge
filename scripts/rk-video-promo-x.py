@@ -43,10 +43,10 @@ PROMOS = [
         "format": "Autonomous Airfare Radar (15s · 1080p)",
         "video": VIDEOS_DIR / "flight_radar_custom.mp4",
         "text": (
-            "Tired of airlines bumping fares when you refresh. Built an autonomous radar polling 48 carriers 24/7. When prices drop >40%, it pushes an instant alert to Telegram with direct booking links. Open source. https://github.com/RanuK12/Flight-Price-Alert"
+            "Tired of airlines bumping fares on refresh. Built an autonomous radar polling 48 carriers 24/7. When prices drop >40%, it pushes an instant alert to Telegram with direct carrier reservation links. Open source. https://github.com/RanuK12/Flight-Price-Alert"
         ),
         "thread": [
-            "Tired of airlines bumping fares when you refresh. Built an autonomous radar polling 48 carriers 24/7. When prices drop >40%, it pushes an instant alert to Telegram with direct booking links. Open source. https://github.com/RanuK12/Flight-Price-Alert",
+            "Tired of airlines bumping fares on refresh. Built an autonomous radar polling 48 carriers 24/7. When prices drop >40%, it pushes an instant alert to Telegram with direct carrier reservation links. Open source. https://github.com/RanuK12/Flight-Price-Alert",
             "Under the hood: headless Python daemon querying ITA Matrix and direct carrier APIs, cache invalidation on dynamic fare buckets, and instant Telegram bot delivery. Zero third-party trackers, runs locally or on a cheap VPS."
         ]
     },
