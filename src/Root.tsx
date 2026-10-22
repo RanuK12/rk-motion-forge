@@ -12,6 +12,8 @@ import { MosaicVideo } from "./compositions/MosaicVideo";
 import { FlightRadarVideo } from "./compositions/FlightRadarVideo";
 import { AuditBotInspectorVideo } from "./compositions/AuditBotInspectorVideo";
 import { TerminalHackerVideo } from "./compositions/TerminalHackerVideo";
+import { NextGenPromoVideo } from "./compositions/NextGenPromoVideo";
+import { NextGenVerticalVideo } from "./compositions/NextGenVerticalVideo";
 import datacanvasConfig from "../products/datacanvas.json";
 import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
@@ -206,6 +208,109 @@ export const Root: React.FC = () => {
           finalPhrase: "366 products. one grid.",
           url: "ranuk.dev",
         }}
+      />
+      {/* ============================================================== */}
+      {/* 🚀 ARCHETYPE NEXTGEN: 2026 DARK OBSIDIAN GLASSMORPHISM (15s)  */}
+      {/* Landscape (1920x1080) and Mobile Vertical (1080x1920)         */}
+      {/* ============================================================== */}
+      {/* DataCanvas BI */}
+      <Composition
+        id="DataCanvasNextGen"
+        component={NextGenPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: datacanvasConfig as unknown as ProductConfig }}
+      />
+      <Composition
+        id="DataCanvasNextGenVertical"
+        component={NextGenVerticalVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ config: datacanvasConfig as unknown as ProductConfig }}
+      />
+
+      {/* Ranuk Profit Bot */}
+      <Composition
+        id="RanukProfitNextGen"
+        component={NextGenPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: ranukProfitConfig as unknown as ProductConfig }}
+      />
+      <Composition
+        id="RanukProfitNextGenVertical"
+        component={NextGenVerticalVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ config: ranukProfitConfig as unknown as ProductConfig }}
+      />
+
+      {/* Flight Price Alert */}
+      <Composition
+        id="FlightAlertNextGen"
+        component={NextGenPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: flightAlertConfig as unknown as ProductConfig }}
+      />
+      <Composition
+        id="FlightAlertNextGenVertical"
+        component={NextGenVerticalVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ config: flightAlertConfig as unknown as ProductConfig }}
+      />
+
+      {/* AuditBot */}
+      <Composition
+        id="AuditBotNextGen"
+        component={NextGenPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: auditBotConfig as unknown as ProductConfig }}
+      />
+      <Composition
+        id="AuditBotNextGenVertical"
+        component={NextGenVerticalVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ config: auditBotConfig as unknown as ProductConfig }}
+      />
+
+      {/* El Revelado */}
+      <Composition
+        id="RevealNextGen"
+        component={NextGenPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: revealConfig as unknown as ProductConfig }}
+      />
+      <Composition
+        id="RevealNextGenVertical"
+        component={NextGenVerticalVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ config: revealConfig as unknown as ProductConfig }}
       />
     </>
   );

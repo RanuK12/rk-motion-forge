@@ -40,6 +40,18 @@ COMPOSITIONS = {
 
     # Arquetipo 5: Studio Mosaic Wall (20s, 1920x1080 zoom-out de 366 soluciones)
     "mosaic": {"comp": "Mosaic", "base_json": None, "name": "Ranuk IT Solutions Mosaic Wall (80-Solution Grid)"},
+
+    # Arquetipo 6: NextGen Obsidian Glassmorphism (15s, 1920x1080 & 1080x1920)
+    "datacanvas-nextgen": {"comp": "DataCanvasNextGen", "base_json": "datacanvas", "name": "DataCanvas BI (NextGen Obsidian 16:9)"},
+    "datacanvas-nextgen-vertical": {"comp": "DataCanvasNextGenVertical", "base_json": "datacanvas", "name": "DataCanvas BI (NextGen Vertical 9:16)"},
+    "ranuk-profit-nextgen": {"comp": "RanukProfitNextGen", "base_json": "ranuk-profit", "name": "Ranuk Profit (NextGen Obsidian 16:9)"},
+    "ranuk-profit-nextgen-vertical": {"comp": "RanukProfitNextGenVertical", "base_json": "ranuk-profit", "name": "Ranuk Profit (NextGen Vertical 9:16)"},
+    "flight-alert-nextgen": {"comp": "FlightAlertNextGen", "base_json": "flight-alert", "name": "Flight Price Alert (NextGen Obsidian 16:9)"},
+    "flight-alert-nextgen-vertical": {"comp": "FlightAlertNextGenVertical", "base_json": "flight-alert", "name": "Flight Price Alert (NextGen Vertical 9:16)"},
+    "auditbot-nextgen": {"comp": "AuditBotNextGen", "base_json": "auditbot", "name": "AuditBot (NextGen Obsidian 16:9)"},
+    "auditbot-nextgen-vertical": {"comp": "AuditBotNextGenVertical", "base_json": "auditbot", "name": "AuditBot (NextGen Vertical 9:16)"},
+    "reveal-nextgen": {"comp": "RevealNextGen", "base_json": "reveal", "name": "El Revelado (NextGen Obsidian 16:9)"},
+    "reveal-nextgen-vertical": {"comp": "RevealNextGenVertical", "base_json": "reveal", "name": "El Revelado (NextGen Vertical 9:16)"},
 }
 
 def tg_send_video(file_path: Path, caption: str):
@@ -104,6 +116,7 @@ def build_video(product_id: str, concurrency: int = 5, send_tg: bool = True):
         comp_name,
         str(output_mp4),
         f"--concurrency={concurrency}",
+        "--pixel-format=yuv420p",
     ]
 
     print(f"Ejecutando: {' '.join(cmd)}")

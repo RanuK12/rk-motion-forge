@@ -38,6 +38,51 @@ except ImportError:
 
 PROMOS = [
     {
+        "id": "datacanvas_nextgen",
+        "product": "DataCanvas BI",
+        "format": "NextGen Obsidian Motion (15s · 1080p)",
+        "video": VIDEOS_DIR / "datacanvas_nextgen_promo.mp4",
+        "text": (
+            "Still parsing CSVs by hand in 2026. DataCanvas BI connects DuckDB-WASM directly to ChatGPT for 0ms query latency and instant executive PDF exports. Open source. https://github.com/RanuK12/rk-mcp-datacanvas"
+        ),
+    },
+    {
+        "id": "ranuk_profit_nextgen",
+        "product": "Ranuk Profit",
+        "format": "NextGen Obsidian Quantitative (15s · 1080p)",
+        "video": VIDEOS_DIR / "ranuk_profit_nextgen_promo.mp4",
+        "text": (
+            "Emotion and latency ruin crypto execution. Ranuk Profit runs automated breakout strategies and dynamic trailing stops 24/7 on Binance with strict state locks. Open source. https://github.com/RanuK12/Ranuk-Profit-Bot"
+        ),
+    },
+    {
+        "id": "flight_alert_nextgen",
+        "product": "Flight Price Alert",
+        "format": "NextGen Obsidian Radar (15s · 1080p)",
+        "video": VIDEOS_DIR / "flight_alert_nextgen_promo.mp4",
+        "text": (
+            "Tired of airlines bumping fares on refresh. Built an autonomous radar polling 48 carriers 24/7. When prices drop >40%, it pushes an instant alert to Telegram with direct carrier reservation links. Open source. https://github.com/RanuK12/Flight-Price-Alert"
+        ),
+    },
+    {
+        "id": "auditbot_nextgen",
+        "product": "AuditBot",
+        "format": "NextGen Obsidian DevTools (15s · 1080p)",
+        "video": VIDEOS_DIR / "auditbot_nextgen_promo.mp4",
+        "text": (
+            "Is your web app compliant before a demand letter lands. AuditBot runs headless DOM inspection against 84 WCAG 2.1 rules and generates executive PDF remediation reports in 12s. Open source CLI. https://github.com/RanuK12/AuditBot"
+        ),
+    },
+    {
+        "id": "reveal_nextgen",
+        "product": "El Revelado",
+        "format": "NextGen Obsidian Satellite (15s · 1080p)",
+        "video": VIDEOS_DIR / "reveal_nextgen_promo.mp4",
+        "text": (
+            "Tired of generic digital collectibles. The Reveal is a dynamic satellite puzzle where you claim exact geographic coordinates on an orbital grid to uncover hidden territory in real time. https://reveal.ranuk.dev"
+        ),
+    },
+    {
         "id": "flight_alert_radar",
         "product": "Flight Price Alert",
         "format": "Autonomous Airfare Radar (15s · 1080p)",
@@ -180,9 +225,10 @@ def main():
     parser = argparse.ArgumentParser(description="Ranuk Video Promo Engine for X (@ranuk_dev)")
     parser.add_argument("--dry-run", action="store_true", help="Validates everything without posting to X")
     parser.add_argument("--force", action="store_true", help="Bypasses cadence interval check")
-    parser.add_argument("--index", type=int, default=None, help="Force specific promo by index (0-4)")
+    parser.add_argument("--index", type=int, default=None, help=f"Force specific promo by index (0-{len(PROMOS)-1})")
     parser.add_argument("--product", type=str, default=None, help="Force specific promo by product name")
     parser.add_argument("--status", action="store_true", help="Print current rotation status and exit")
+    parser.add_argument("--cadence-hours", type=float, default=40.0, help="Minimum interval in hours between video promos (default: 40h = al menos 1 cada 2 días en cron diario)")
     args = parser.parse_args()
 
     # Pre-flight check
@@ -196,25 +242,30 @@ def main():
 
     state = load_state()
     now = time.time()
-    min_interval_seconds = 20 * 3600  # At least 20 hours between video promos (~1 per day)
+    min_interval_seconds = args.cadence_hours * 3600  # Default 40 hours -> 1 video cada 2 días en corrida diaria
     elapsed = now - state.get("last_posted_ts", 0)
 
     if args.status:
         last_ts = state.get("last_posted_ts", 0)
         last_str = dt.datetime.fromtimestamp(last_ts).strftime("%Y-%m-%d %H:%M:%S") if last_ts else "Never"
         next_idx = (state.get("last_index", -1) + 1) % len(PROMOS)
+        can_post = elapsed >= min_interval_seconds or last_ts == 0
         print("=== RANUK VIDEO PROMO ENGINE STATUS ===")
         print(f"Total promos configured: {len(PROMOS)}")
+        print(f"Cadencia configurada: 1 video cada 2 días (umbral: {args.cadence_hours:.1f}h)")
         print(f"Last posted: {last_str} ({elapsed / 3600:.1f} hours ago)")
         print(f"Current rotation index: {state.get('last_index', -1)}")
         print(f"Next promo in queue [{next_idx}]: {PROMOS[next_idx]['product']} - {PROMOS[next_idx]['format']}")
-        print(f"Can post now: {elapsed >= min_interval_seconds or last_ts == 0}")
+        print(f"Can post now: {can_post}")
+        if not can_post:
+            hours_left = (min_interval_seconds - elapsed) / 3600
+            print(f"Hours until next eligible posting: {hours_left:.1f}h")
         return
 
-    # Cadence check
+    # Cadence check (Al menos 1 vez cada 2 días)
     if not args.force and not args.dry_run and elapsed < min_interval_seconds:
         hours_left = (min_interval_seconds - elapsed) / 3600
-        print(f"[Video Promo] Cadencia activa: faltan {hours_left:.1f} horas para el próximo video. Salto.")
+        print(f"[Video Promo] Cadencia activa: 1 video cada 2 días (último publicado hace {elapsed / 3600:.1f}h). Faltan {hours_left:.1f} horas para el próximo video. Salto limpio.")
         return
 
     # Choose promo
