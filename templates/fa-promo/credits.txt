@@ -1,0 +1,10 @@
+Flight Alert promo v3 — credits
+Voiceover: Deepgram Aura-2 TTS, voice aura-2-diana-es (synthetic). Word timings via Deepgram nova-3 STT.
+Music: "Inspired" by Kevin MacLeod (incompetech.com)
+  Source: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Inspired.mp3
+  License: Creative Commons Attribution 4.0 — http://creativecommons.org/licenses/by/4.0/
+  Required attribution when publishing (put in the post description):
+  "Inspired" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License
+Visuals: Remotion 4 motion graphics (./remotion). Screenshots: Flight Alert Mini App (own product), prices blurred.
+Icons: custom SVG plane, bell emoji (system font). Font: landing --font stack (renders as Inter, SIL OFL 1.1, on this box).
+Colors: landing CSS dark theme + Mini App mint #64FFDA.

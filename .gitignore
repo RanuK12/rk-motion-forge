@@ -12,3 +12,11 @@ __pycache__/
 .pytest_cache/
 out/
 public/shots/
+
+# fa-promo template
+templates/fa-promo/node_modules/
+templates/fa-promo/out/
+*.mp4
+.env
+.env.*
+!templates/fa-promo/package-lock.json
