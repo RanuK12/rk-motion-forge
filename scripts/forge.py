@@ -52,6 +52,8 @@ COMPOSITIONS = {
     "auditbot-nextgen-vertical": {"comp": "AuditBotNextGenVertical", "base_json": "auditbot", "name": "AuditBot (NextGen Vertical 9:16)"},
     "reveal-nextgen": {"comp": "RevealNextGen", "base_json": "reveal", "name": "El Revelado (NextGen Obsidian 16:9)"},
     "reveal-nextgen-vertical": {"comp": "RevealNextGenVertical", "base_json": "reveal", "name": "El Revelado (NextGen Vertical 9:16)"},
+    "dynamic-island-nextgen": {"comp": "DynamicIslandNextGen", "base_json": "dynamic-island", "name": "Dynamic Island for Windows (NextGen Obsidian 16:9)"},
+    "dynamic-island-nextgen-vertical": {"comp": "DynamicIslandNextGenVertical", "base_json": "dynamic-island", "name": "Dynamic Island for Windows (NextGen Vertical 9:16)"},
 }
 
 def tg_send_video(file_path: Path, caption: str):

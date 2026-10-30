@@ -19,6 +19,7 @@ import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
 import flightAlertConfig from "../products/flight-alert.json";
 import auditBotConfig from "../products/auditbot.json";
+import dynamicIslandConfig from "../products/dynamic-island.json";
 import { ProductConfig } from "./types/product";
 
 export const Root: React.FC = () => {
@@ -311,6 +312,25 @@ export const Root: React.FC = () => {
         width={1080}
         height={1920}
         defaultProps={{ config: revealConfig as unknown as ProductConfig }}
+      />
+      {/* Dynamic Island for Windows */}
+      <Composition
+        id="DynamicIslandNextGen"
+        component={NextGenPromoVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ config: dynamicIslandConfig as unknown as ProductConfig }}
+      />
+      <Composition
+        id="DynamicIslandNextGenVertical"
+        component={NextGenVerticalVideo as any}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ config: dynamicIslandConfig as unknown as ProductConfig }}
       />
     </>
   );

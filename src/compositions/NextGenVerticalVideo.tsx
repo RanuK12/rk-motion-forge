@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate, Audio, staticFile } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring, interpolate, Audio, Video, staticFile } from "remotion";
 import { ProductConfig } from "../types/product";
 import { CyberGridBackground } from "../components/CyberGridBackground";
 import { GlassmorphicWindow } from "../components/GlassmorphicWindow";
@@ -174,32 +174,58 @@ export const NextGenVerticalVideo: React.FC<NextGenVerticalVideoProps> = ({ conf
                   />
                 </div>
 
-                {/* Vertical Bar Chart Visualizer */}
-                <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: 24, padding: "20px 0" }}>
-                  {config.productShowcase.mockup.chart.bars.map((bar, bIdx) => {
-                    const barHeightProg = interpolate(frame, [110 + bIdx * 6, 150 + bIdx * 6], [0, 1], {
-                      extrapolateLeft: "clamp",
-                      extrapolateRight: "clamp",
-                    });
-                    const isTargetBar = bIdx === 2;
-                    return (
-                      <div key={bIdx} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-                        <div
-                          style={{
-                            width: "100%",
-                            height: `${(bar.value / 140) * 320 * barHeightProg}px`,
-                            backgroundColor: isTargetBar ? accent : "rgba(255, 255, 255, 0.15)",
-                            borderRadius: "8px 8px 0 0",
-                            boxShadow: isTargetBar ? `0 0 24px ${accent}` : "none",
-                          }}
-                        />
-                        <div style={{ fontSize: 16, color: isTargetBar ? "#FFFFFF" : "rgba(255,255,255,0.5)", fontWeight: isTargetBar ? 800 : 500 }}>
-                          {bar.label}
+                {/* Live Display: Video for dynamic-island, or Vertical Bar Chart */}
+                {config.id === "dynamic-island" ? (
+                  <div
+                    style={{
+                      flex: 1,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "#0d1117",
+                      borderRadius: 16,
+                      border: `1px solid ${accent}44`,
+                      boxShadow: `0 20px 50px rgba(0,0,0,0.8), 0 0 30px ${accent}22`,
+                      overflow: "hidden",
+                      margin: "12px 0",
+                    }}
+                  >
+                    <Video
+                      src={staticFile("dynamic-island-promo.mp4")}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: 24, padding: "20px 0" }}>
+                    {config.productShowcase.mockup.chart?.bars.map((bar, bIdx) => {
+                      const barHeightProg = interpolate(frame, [110 + bIdx * 6, 150 + bIdx * 6], [0, 1], {
+                        extrapolateLeft: "clamp",
+                        extrapolateRight: "clamp",
+                      });
+                      const isTargetBar = bIdx === 2;
+                      return (
+                        <div key={bIdx} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+                          <div
+                            style={{
+                              width: "100%",
+                              height: `${(bar.value / 140) * 320 * barHeightProg}px`,
+                              backgroundColor: isTargetBar ? accent : "rgba(255, 255, 255, 0.15)",
+                              borderRadius: "8px 8px 0 0",
+                              boxShadow: isTargetBar ? `0 0 24px ${accent}` : "none",
+                            }}
+                          />
+                          <div style={{ fontSize: 16, color: isTargetBar ? "#FFFFFF" : "rgba(255,255,255,0.5)", fontWeight: isTargetBar ? 800 : 500 }}>
+                            {bar.label}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                      );
+                    })}
+                  </div>
+                )}
 
                 <div
                   style={{

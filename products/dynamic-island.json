@@ -1,0 +1,78 @@
+{
+  "id": "dynamic-island",
+  "name": "Dynamic Island for Windows",
+  "tagline": "Lightweight, extensible Dynamic Island for Windows 10 & 11",
+  "audience": "Windows Power Users, Developers & Designers",
+  "colors": {
+    "background": "#0B1017",
+    "accent": "#38BDF8",
+    "text": "#F8FAFC"
+  },
+  "hook": {
+    "label": "// OPEN SOURCE WINDOWS DESKTOP UTILITY",
+    "words": ["Bring", "Dynamic", "Island", "to", "Windows", "Desktop."],
+    "taglineBottom": "PER-MONITOR DPI AWARE · ZERO OVERHEAD · 60 FPS"
+  },
+  "features": [
+    {
+      "tag": "// FEATURE 01 · REAL-TIME HUD",
+      "name": "Media & Playback Control",
+      "benefit": "Live Spotify and Windows Media player integration in a compact pill",
+      "metricLabel": "MEMORY FOOTPRINT",
+      "metricValue": "< 18 MB",
+      "iconType": "chart"
+    },
+    {
+      "tag": "// FEATURE 02 · MODULAR PLUGINS",
+      "name": "Single-File Python Plugins",
+      "benefit": "Weather, Pomodoro focus timer, price radar & extensible alerts",
+      "metricLabel": "SCALING ENGINE",
+      "metricValue": "150% DPI",
+      "iconType": "database"
+    }
+  ],
+  "productShowcase": {
+    "headlinePrefix": "Floating desktop HUD engineered for",
+    "headlineHighlight": "unobtrusive focus.",
+    "bullets": [
+      "Per-monitor DPI awareness (100% - 200% dynamic scaling)",
+      "Expandable multi-tab widget dashboard (Media, Timer, Weather)",
+      "Zero telemetry, 100% local Python runtime"
+    ],
+    "mockup": {
+      "windowTitle": "Dynamic Island for Windows — Live HUD Engine",
+      "actionBtnText": "Clone Repository",
+      "kpis": [
+        { "label": "Memoria RAM", "value": "18 MB", "sub": "Ultra ligero" },
+        { "label": "DPI Scaling", "value": "150%", "sub": "Pixel-perfect QHD", "color": "#38BDF8" },
+        { "label": "Latencia UI", "value": "< 1 ms", "sub": "60 FPS suave", "color": "#10B981" }
+      ],
+      "chart": {
+        "title": "Actividad de Widgets en Tiempo Real",
+        "badge": "Active HUD",
+        "bars": [
+          { "label": "Reloj", "value": 100 },
+          { "label": "Música", "value": 85 },
+          { "label": "Timer", "value": 95 },
+          { "label": "Clima", "value": 70 },
+          { "label": "Alertas", "value": 90 }
+        ]
+      }
+    }
+  },
+  "systemPipeline": [
+    { "step": "// 01 · HUD PILL", "title": "Centered Floating Pill", "metric": "< 18 MB RAM", "sub": "Smart multi-monitor centering" },
+    { "step": "// 02 · DPI ENGINE", "title": "Per-Monitor Scaling", "metric": "Native QHD/4K", "sub": "Zero-blur CTk DPI awareness" },
+    { "step": "// 03 · WIDGET BUS", "title": "Multi-Tab Expansion", "metric": "5 Core Widgets", "sub": "Timer, Media, Weather, Alerts" },
+    { "step": "// 04 · EXTENSIBILITY", "title": "Python Plugin API", "metric": "1-file Python", "sub": "Build custom widgets in minutes" }
+  ],
+  "mission": {
+    "label": "// DESKTOP PRODUCTIVITY ETHOS",
+    "quote": "Desktop notifications shouldn't interrupt your flow. Information belongs in an elegant floating pill."
+  },
+  "outro": {
+    "cta": "Transform your Windows desktop",
+    "url": "github.com/RanuK12/dynamic-island-win",
+    "btnText": "Star & Clone on GitHub"
+  }
+}

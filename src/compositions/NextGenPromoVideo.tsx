@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, spring, interpolate, Audio, staticFile } from "remotion";
+import { useCurrentFrame, useVideoConfig, spring, interpolate, Audio, Video, staticFile } from "remotion";
 import { ProductConfig } from "../types/product";
 import { CyberGridBackground } from "../components/CyberGridBackground";
 import { GlassmorphicWindow } from "../components/GlassmorphicWindow";
@@ -267,7 +267,7 @@ export const NextGenPromoVideo: React.FC<NextGenPromoVideoProps> = ({ config }) 
                   </div>
                 </div>
 
-                {/* Right: Interactive Graphic / Data Visualizer */}
+                {/* Right: Interactive Graphic / Data Visualizer or Real Windows Video */}
                 <div
                   style={{
                     flex: 1,
@@ -278,85 +278,154 @@ export const NextGenPromoVideo: React.FC<NextGenPromoVideoProps> = ({ config }) 
                     boxSizing: "border-box",
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div>
-                      <div style={{ fontSize: 20, fontWeight: 800 }}>Real-time Distribution</div>
-                      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Dynamic Partition Aggregation</div>
-                    </div>
-                    <div
-                      style={{
-                        backgroundColor: "#10B98122",
-                        border: "1px solid #10B981",
-                        color: "#10B981",
-                        fontSize: 12,
-                        fontWeight: 700,
-                        padding: "5px 12px",
-                        borderRadius: 6,
-                      }}
-                    >
-                      ● 60 FPS STREAM
-                    </div>
-                  </div>
-
-                  {/* Bar Chart Visualizer */}
-                  <div style={{ display: "flex", alignItems: "flex-end", gap: 24, height: 280, padding: "0 20px" }}>
-                    {config.productShowcase.mockup.chart.bars.map((bar, bIdx) => {
-                      const barHeightProg = interpolate(frame, [110 + bIdx * 6, 150 + bIdx * 6], [0, 1], {
-                        extrapolateLeft: "clamp",
-                        extrapolateRight: "clamp",
-                      });
-                      const isTargetBar = bIdx === 2;
-                      const isHovered = frame >= 140 && isTargetBar;
-
-                      return (
+                  {config.id === "dynamic-island" ? (
+                    <div style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                        <div>
+                          <div style={{ fontSize: 20, fontWeight: 800 }}>Windows 11 Live Execution</div>
+                          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>2560×1440 · 150% Per-Monitor DPI Aware</div>
+                        </div>
                         <div
-                          key={bIdx}
                           style={{
-                            flex: 1,
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            gap: 10,
-                            height: "100%",
-                            justifyContent: "flex-end",
+                            backgroundColor: "#10B98122",
+                            border: "1px solid #10B981",
+                            color: "#10B981",
+                            fontSize: 12,
+                            fontWeight: 700,
+                            padding: "5px 12px",
+                            borderRadius: 6,
                           }}
                         >
-                          <div
-                            style={{
-                              width: "100%",
-                              height: `${(bar.value / 140) * 230 * barHeightProg}px`,
-                              backgroundColor: isHovered ? accent : "rgba(255, 255, 255, 0.15)",
-                              borderRadius: "8px 8px 0 0",
-                              boxShadow: isHovered ? `0 0 24px ${accent}` : "none",
-                              transition: "all 0.1s ease",
-                            }}
-                          />
-                          <div style={{ fontSize: 12, color: isHovered ? "#FFFFFF" : "rgba(255,255,255,0.5)", fontWeight: isHovered ? 800 : 500 }}>
-                            {bar.label}
-                          </div>
+                          ● NATIVE PYTHON CTk
                         </div>
-                      );
-                    })}
-                  </div>
+                      </div>
 
-                  {/* Bottom Action Button */}
-                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <div
-                      style={{
-                        backgroundColor: frame > 170 ? "#10B981" : accent,
-                        color: "#FFFFFF",
-                        padding: "12px 28px",
-                        borderRadius: 8,
-                        fontWeight: 700,
-                        fontSize: 14,
-                        boxShadow: `0 10px 25px ${frame > 170 ? "#10B98155" : `${accent}55`}`,
-                        transform: frame >= 170 && frame < 185 ? "scale(0.94)" : "scale(1)",
-                        transition: "transform 0.08s ease",
-                      }}
-                    >
-                      {frame > 170 ? "✓ Exported to PDF" : config.productShowcase.mockup.actionBtnText || "Export Report"}
+                      <div
+                        style={{
+                          flex: 1,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backgroundColor: "#0d1117",
+                          borderRadius: 14,
+                          border: `1px solid ${accent}44`,
+                          boxShadow: `0 20px 50px rgba(0,0,0,0.8), 0 0 30px ${accent}22`,
+                          overflow: "hidden",
+                          position: "relative",
+                        }}
+                      >
+                        <Video
+                          src={staticFile("dynamic-island-promo.mp4")}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                          }}
+                        />
+                      </div>
+
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 12 }}>
+                        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)" }}>
+                          Real ASUS ROG capture · Zero telemetry
+                        </div>
+                        <div
+                          style={{
+                            backgroundColor: frame > 170 ? "#10B981" : accent,
+                            color: "#FFFFFF",
+                            padding: "10px 24px",
+                            borderRadius: 8,
+                            fontWeight: 700,
+                            fontSize: 14,
+                            boxShadow: `0 6px 20px ${accent}44`,
+                          }}
+                        >
+                          {config.productShowcase.mockup.actionBtnText}
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div>
+                          <div style={{ fontSize: 20, fontWeight: 800 }}>Real-time Distribution</div>
+                          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>Dynamic Partition Aggregation</div>
+                        </div>
+                        <div
+                          style={{
+                            backgroundColor: "#10B98122",
+                            border: "1px solid #10B981",
+                            color: "#10B981",
+                            fontSize: 12,
+                            fontWeight: 700,
+                            padding: "5px 12px",
+                            borderRadius: 6,
+                          }}
+                        >
+                          ● 60 FPS STREAM
+                        </div>
+                      </div>
+
+                      {/* Bar Chart Visualizer */}
+                      <div style={{ display: "flex", alignItems: "flex-end", gap: 24, height: 280, padding: "0 20px" }}>
+                        {config.productShowcase.mockup.chart?.bars.map((bar, bIdx) => {
+                          const barHeightProg = interpolate(frame, [110 + bIdx * 6, 150 + bIdx * 6], [0, 1], {
+                            extrapolateLeft: "clamp",
+                            extrapolateRight: "clamp",
+                          });
+                          const isTargetBar = bIdx === 2;
+                          const isHovered = frame >= 140 && isTargetBar;
+
+                          return (
+                            <div
+                              key={bIdx}
+                              style={{
+                                flex: 1,
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                gap: 10,
+                                height: "100%",
+                                justifyContent: "flex-end",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  width: "100%",
+                                  height: `${(bar.value / 140) * 230 * barHeightProg}px`,
+                                  backgroundColor: isHovered ? accent : "rgba(255, 255, 255, 0.15)",
+                                  borderRadius: "8px 8px 0 0",
+                                  boxShadow: isHovered ? `0 0 24px ${accent}` : "none",
+                                  transition: "all 0.1s ease",
+                                }}
+                              />
+                              <div style={{ fontSize: 12, color: isHovered ? "#FFFFFF" : "rgba(255,255,255,0.5)", fontWeight: isHovered ? 800 : 500 }}>
+                                {bar.label}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {/* Bottom Action Button */}
+                      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <div
+                          style={{
+                            backgroundColor: frame > 170 ? "#10B981" : accent,
+                            color: "#FFFFFF",
+                            padding: "12px 28px",
+                            borderRadius: 8,
+                            fontWeight: 700,
+                            fontSize: 14,
+                            boxShadow: `0 10px 25px ${frame > 170 ? "#10B98155" : `${accent}55`}`,
+                            transform: frame >= 170 && frame < 185 ? "scale(0.94)" : "scale(1)",
+                            transition: "transform 0.08s ease",
+                          }}
+                        >
+                          {frame > 170 ? "✓ Exported to PDF" : config.productShowcase.mockup.actionBtnText || "Export Report"}
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </GlassmorphicWindow>
