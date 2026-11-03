@@ -54,20 +54,18 @@ COMPOSITIONS = {
     "reveal-nextgen-vertical": {"comp": "RevealNextGenVertical", "base_json": "reveal", "name": "El Revelado (NextGen Vertical 9:16)"},
     "dynamic-island-nextgen": {"comp": "DynamicIslandNextGen", "base_json": "dynamic-island", "name": "Dynamic Island for Windows (NextGen Obsidian 16:9)"},
     "dynamic-island-nextgen-vertical": {"comp": "DynamicIslandNextGenVertical", "base_json": "dynamic-island", "name": "Dynamic Island for Windows (NextGen Vertical 9:16)"},
+
+    # Arquetipo 7: Indie Showcase (27s, Apple/Reddit Model - 8840FE3E)
+    "dynamic-island-showcase": {"comp": "IndieShowcaseDynamicIsland", "base_json": "dynamic-island", "name": "Dynamic Island (Indie Showcase 27s - Model 8840FE3E)"},
+    "dynamic-island-showcase-vertical": {"comp": "IndieShowcaseDynamicIslandVertical", "base_json": "dynamic-island", "name": "Dynamic Island (Indie Showcase Vertical 9:16)"},
 }
 
 def tg_send_video(file_path: Path, caption: str):
-    tg_config = ROOT_DIR.parent / ".ranukita/telegram_config.json"
-    if not tg_config.exists():
-        tg_config = Path.home() / ".ranukita/telegram_config.json"
-    if not tg_config.exists():
+    token = "8718778263:AAFOJHTEyHUHpXeTkqTE7E9U5Jbye-eMcWI"
+    chat = "8107555656"
+    if not file_path.exists():
         return
     try:
-        cfg = json.loads(tg_config.read_text())
-        token = cfg.get("bot_token") or cfg.get("token") or cfg.get("channels", {}).get("telegram", {}).get("botToken")
-        chat = cfg.get("chat_id") or cfg.get("channels", {}).get("telegram", {}).get("chatId") or 8107555656
-        if not token or not file_path.exists():
-            return
         cmd = [
             "curl", "-s", "-X", "POST",
             f"https://api.telegram.org/bot{token}/sendVideo",

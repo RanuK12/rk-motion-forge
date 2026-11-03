@@ -14,6 +14,8 @@ import { AuditBotInspectorVideo } from "./compositions/AuditBotInspectorVideo";
 import { TerminalHackerVideo } from "./compositions/TerminalHackerVideo";
 import { NextGenPromoVideo } from "./compositions/NextGenPromoVideo";
 import { NextGenVerticalVideo } from "./compositions/NextGenVerticalVideo";
+import { IndieProductShowcase } from "./compositions/IndieProductShowcase";
+import { IndieProductShowcaseVertical } from "./compositions/IndieProductShowcaseVertical";
 import datacanvasConfig from "../products/datacanvas.json";
 import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
@@ -331,6 +333,25 @@ export const Root: React.FC = () => {
         width={1080}
         height={1920}
         defaultProps={{ config: dynamicIslandConfig as unknown as ProductConfig }}
+      />
+      {/* ============================================================== */}
+      {/* 🚀 ARQUETIPO 7: INDIE PRODUCT SHOWCASE (27s, Model 8840FE3E)    */}
+      {/* ============================================================== */}
+      <Composition
+        id="IndieShowcaseDynamicIsland"
+        component={IndieProductShowcase as any}
+        durationInFrames={810}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="IndieShowcaseDynamicIslandVertical"
+        component={IndieProductShowcaseVertical as any}
+        durationInFrames={810}
+        fps={30}
+        width={1080}
+        height={1920}
       />
     </>
   );
