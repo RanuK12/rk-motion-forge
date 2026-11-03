@@ -143,6 +143,11 @@ PROMOS = [
 ]
 
 def tg_notify(msg: str):
+    try:
+        import rk_alerta
+        return rk_alerta.enviar(msg)
+    except Exception:
+        pass
     if not TG_CONFIG.exists():
         return
     try:
@@ -152,7 +157,7 @@ def tg_notify(msg: str):
         if not token:
             return
         url = f"https://api.telegram.org/bot{token}/sendMessage"
-        payload = json.dumps({"chat_id": chat, "text": msg, "parse_mode": "HTML"}).encode()
+        payload = json.dumps({"chat_id": chat, "text": msg}).encode()
         req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
         urllib.request.urlopen(req, timeout=10)
     except Exception as e:

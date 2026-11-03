@@ -16,6 +16,7 @@ import { NextGenPromoVideo } from "./compositions/NextGenPromoVideo";
 import { NextGenVerticalVideo } from "./compositions/NextGenVerticalVideo";
 import { IndieProductShowcase } from "./compositions/IndieProductShowcase";
 import { IndieProductShowcaseVertical } from "./compositions/IndieProductShowcaseVertical";
+import { AdaJgvShort } from "./compositions/AdaJgvShort";
 import datacanvasConfig from "../products/datacanvas.json";
 import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
@@ -350,6 +351,15 @@ export const Root: React.FC = () => {
         component={IndieProductShowcaseVertical as any}
         durationInFrames={810}
         fps={30}
+        width={1080}
+        height={1920}
+      />
+      {/* Short ADA - Auditoría JGV Estudio Jurídico (60s, 60fps, 1080x1920) */}
+      <Composition
+        id="AdaJgvShort"
+        component={AdaJgvShort}
+        durationInFrames={3600}
+        fps={60}
         width={1080}
         height={1920}
       />
