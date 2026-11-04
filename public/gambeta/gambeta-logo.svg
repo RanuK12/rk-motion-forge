@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Gambeta Logo">
+  <defs>
+    <!-- Background Shield Gradient -->
+    <linearGradient id="gbShield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#020813"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+
+    <!-- Gold Accent Gradient -->
+    <linearGradient id="gbGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE79A"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+
+    <!-- Celeste Argentine Gradient -->
+    <linearGradient id="gbCeleste" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#74ACDF"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Shield Frame -->
+  <path d="M60 8 L104 26 V64 C104 88 80 108 60 114 C40 108 16 88 16 64 V26 Z" 
+        fill="url(#gbShield)" stroke="url(#gbGoldGrad)" stroke-width="2.5" />
+
+  <!-- Dribble Arc (Gambeta Trail) -->
+  <path d="M28 82 C 40 62, 54 74, 68 54 C 78 40, 86 46, 94 30" 
+        fill="none" stroke="url(#gbCeleste)" stroke-width="4.5" stroke-linecap="round" opacity="0.9" />
+
+  <!-- Dribble Ball -->
+  <circle cx="94" cy="30" r="7" fill="url(#gbGoldGrad)" stroke="#FFFFFF" stroke-width="1.5" />
+
+  <!-- Stylized G Emblem -->
+  <path d="M68 44 C 62 38, 48 38, 42 46 C 36 54, 36 66, 42 74 C 48 82, 64 82, 68 74 C 70 70, 70 64, 70 62 H 54" 
+        fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- 3 Golden Stars on top -->
+  <g fill="url(#gbGoldGrad)" transform="translate(60, 20)">
+    <!-- Star 1 Left -->
+    <polygon points="-16,-2 -13.5,4 -7,4 -12,8 -10,14 -16,10 -22,14 -20,8 -25,4 -18.5,4" />
+    <!-- Star 2 Center -->
+    <polygon points="0,-6 3,1 10,1 4.5,5.5 7,12.5 0,8 -7,12.5 -4.5,5.5 -10,1 -3,1" />
+    <!-- Star 3 Right -->
+    <polygon points="16,-2 18.5,4 25,4 20,8 22,14 16,10 10,14 12,8 7,4 13.5,4" />
+  </g>
+</svg>

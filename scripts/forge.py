@@ -58,6 +58,11 @@ COMPOSITIONS = {
     # Arquetipo 7: Indie Showcase (27s, Apple/Reddit Model - 8840FE3E)
     "dynamic-island-showcase": {"comp": "IndieShowcaseDynamicIsland", "base_json": "dynamic-island", "name": "Dynamic Island (Indie Showcase 27s - Model 8840FE3E)"},
     "dynamic-island-showcase-vertical": {"comp": "IndieShowcaseDynamicIslandVertical", "base_json": "dynamic-island", "name": "Dynamic Island (Indie Showcase Vertical 9:16)"},
+
+    # Arquetipo 8: Code-Driven Generative Studio (Opus / Lemo-Opuscar / MG-Styles)
+    "gambeta-broadcast": {"comp": "GambetaBroadcastPromo", "base_json": "gambeta", "name": "Gambeta (Sports Broadcast & Kinetic Stadium - Style #12)"},
+    "ada-laser-audit": {"comp": "AdaLaserAuditPromo", "base_json": "auditbot", "name": "AuditBot / ADA (Cyber Laser DOM Inspector - Style #08)"},
+    "ranuk-profit-holo": {"comp": "RanukProfitHoloQuantPromo", "base_json": "ranuk-profit", "name": "Ranuk Profit (Holographic Quant Orderbook - Style #24)"},
 }
 
 def tg_send_video(file_path: Path, caption: str):

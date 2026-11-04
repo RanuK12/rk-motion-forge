@@ -17,6 +17,9 @@ import { NextGenVerticalVideo } from "./compositions/NextGenVerticalVideo";
 import { IndieProductShowcase } from "./compositions/IndieProductShowcase";
 import { IndieProductShowcaseVertical } from "./compositions/IndieProductShowcaseVertical";
 import { AdaJgvShort } from "./compositions/AdaJgvShort";
+import { GambetaBroadcastPromo } from "./compositions/GambetaBroadcastPromo";
+import { AdaLaserAuditPromo } from "./compositions/AdaLaserAuditPromo";
+import { RanukProfitHoloQuantPromo } from "./compositions/RanukProfitHoloQuantPromo";
 import datacanvasConfig from "../products/datacanvas.json";
 import ranukProfitConfig from "../products/ranuk-profit.json";
 import revealConfig from "../products/reveal.json";
@@ -362,6 +365,39 @@ export const Root: React.FC = () => {
         fps={60}
         width={1080}
         height={1920}
+      />
+
+      {/* ============================================================== */}
+      {/* 🚀 OPUS/LEMO CODE-DRIVEN MASTERPIECE PROMOS (15s · 1080p)       */}
+      {/* ============================================================== */}
+      {/* 1. Gambeta: Sports Broadcast & Dynamic Match Day (Style #12)    */}
+      <Composition
+        id="GambetaBroadcastPromo"
+        component={GambetaBroadcastPromo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* 2. ADA-Audits / AuditBot: Cyber Laser Inspector (Style #08)     */}
+      <Composition
+        id="AdaLaserAuditPromo"
+        component={AdaLaserAuditPromo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* 3. Ranuk Profit: Fintech Hologram & Orderbook Quant (Style #24) */}
+      <Composition
+        id="RanukProfitHoloQuantPromo"
+        component={RanukProfitHoloQuantPromo}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );

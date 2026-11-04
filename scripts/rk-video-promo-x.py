@@ -47,6 +47,33 @@ PROMOS = [
         ),
     },
     {
+        "id": "gambeta_broadcast",
+        "product": "Gambeta",
+        "format": "Sports Broadcast & Kinetic Match Day (15s · 1080p)",
+        "video": VIDEOS_DIR / "gambeta-broadcast_promo_15s.mp4",
+        "text": (
+            "¿Cansado de carreras europeas sin mística? Gambeta conecta 7 países, 16 categorías y 378 clubes reales de Sudamérica. Modo carrera profundo, decisiones de vestuario y la pasión del ascenso. Jugá gratis en la web: https://gambetafutbol.games"
+        ),
+    },
+    {
+        "id": "ada_laser_audit",
+        "product": "AuditBot",
+        "format": "Cyber Laser DOM Inspector (15s · 1080p)",
+        "video": VIDEOS_DIR / "ada-laser-audit_promo_15s.mp4",
+        "text": (
+            "Is your web app compliant before a demand letter lands? AuditBot runs headless DOM inspection against 84 WCAG 2.1 rules and auto-generates git diff remediation in 12s. Zero lawsuits. Open source: https://github.com/RanuK12/AuditBot"
+        ),
+    },
+    {
+        "id": "ranuk_profit_holo",
+        "product": "Ranuk Profit",
+        "format": "Holographic Quant Orderbook (15s · 1080p)",
+        "video": VIDEOS_DIR / "ranuk-profit-holo_promo_15s.mp4",
+        "text": (
+            "Still trading crypto with human emotion and 500ms lag? Ranuk Profit runs automated breakout strategies, trailing stops, and microsecond order routing 24/7 on Binance. Non-custodial. Open source: https://github.com/RanuK12/Ranuk-Profit-Bot"
+        ),
+    },
+    {
         "id": "ranuk_profit_nextgen",
         "product": "Ranuk Profit",
         "format": "NextGen Obsidian Quantitative (15s · 1080p)",

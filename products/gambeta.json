@@ -1,0 +1,86 @@
+{
+  "id": "gambeta",
+  "name": "Gambeta",
+  "tagline": "El Modo Carrera de Fútbol Sudamericano Definitivo",
+  "audience": "Amantes del Fútbol & Gamers Móviles",
+  "colors": {
+    "background": "#060D17",
+    "accent": "#74ACDF",
+    "text": "#F8FAFC",
+    "cardBg": "#0E1A2B"
+  },
+  "mascot": {
+    "mood": "excited"
+  },
+  "hook": {
+    "label": "// 01 – MODO CARRERA SUDAMERICANO",
+    "words": ["¿Cansado", "de", "carreras", "europeas", "sin", "mística?"],
+    "taglineBottom": "7 PAÍSES · 16 CATEGORÍAS · 378 CLUBES REALES"
+  },
+  "features": [
+    {
+      "tag": "// FEATURE 01 · FÚTBOL CON IDENTIDAD",
+      "name": "Ascenso & Sudamérica Real",
+      "benefit": "Primera, B Nacional, Federal A y las 7 ligas más calientes del continente",
+      "metricLabel": "CLUBES REALES",
+      "metricValue": "378",
+      "iconType": "rocket"
+    },
+    {
+      "tag": "// FEATURE 02 · DECISIONES DE IMPACTO",
+      "name": "Decisiones de Vestuario",
+      "benefit": "Presión de la hinchada, roces con la prensa, táctica y fichajes calientes",
+      "metricLabel": "CATEGORÍAS",
+      "metricValue": "16",
+      "iconType": "terminal"
+    }
+  ],
+  "productShowcase": {
+    "headlinePrefix": "Gambeta trae la pasión del potrero a tu",
+    "headlineHighlight": "pantalla.",
+    "bullets": [
+      "Modo carrera profundo sin descargas pesadas",
+      "378 clubes de 7 países sudamericanos",
+      "Decisiones tácticas y de vestuario en tiempo real"
+    ],
+    "mockup": {
+      "windowTitle": "Gambeta — Modo Carrera Sudamericano",
+      "actionBtnText": "Jugar Ahora",
+      "kpis": [
+        { "label": "Clubes", "value": "378", "sub": "7 Países", "color": "#74ACDF" },
+        { "label": "Categorías", "value": "16", "sub": "Ascenso incluido", "color": "#F59E0B" },
+        { "label": "Decisiones", "value": "100%", "sub": "Impacto real" }
+      ],
+      "chart": {
+        "title": "Progresión de Carrera",
+        "badge": "En Vivo",
+        "bars": [
+          { "label": "Temp 1", "value": 45 },
+          { "label": "Temp 2", "value": 75 },
+          { "label": "Temp 3", "value": 110 },
+          { "label": "Temp 4", "value": 140 },
+          { "label": "Temp 5", "value": 185 }
+        ]
+      }
+    }
+  },
+  "systemPipeline": [
+    { "step": "// 01 · CLUB", "title": "Elegí tu Origen", "metric": "378 Opciones", "sub": "Desde el Ascenso a Primera" },
+    { "step": "// 02 · TÁCTICA", "title": "Armá el 11", "metric": "16 Ligas", "sub": "Estrategia y vestuario" },
+    { "step": "// 03 · CLUTCH", "title": "Momentos Clave", "metric": "90 Min", "sub": "Decisiones bajo presión" },
+    { "step": "// 04 · GLORIA", "title": "Campeón de América", "metric": "7 Países", "sub": "Escribí tu historia" }
+  ],
+  "mission": {
+    "line1": "Vos tomás las decisiones.",
+    "line2Prefix": "El potrero define tu",
+    "line2Highlight": "destino."
+  },
+  "outro": {
+    "wordmark": "Gambeta",
+    "wordmarkAccent": "Fútbol",
+    "subtitle": "El simulador de carrera y gestión de fútbol más auténtico de Sudamérica",
+    "ctaText": "Jugar Gratis en la Web",
+    "url": "gambetafutbol.games",
+    "socialProof": "378 Clubes · 16 Categorías · 7 Países · @GambetafutbolAR"
+  }
+}
