@@ -61,6 +61,7 @@ COMPOSITIONS = {
 
     # Arquetipo 8: Code-Driven Generative Studio (Opus / Lemo-Opuscar / MG-Styles)
     "gambeta-broadcast": {"comp": "GambetaBroadcastPromo", "base_json": "gambeta", "name": "Gambeta (Sports Broadcast & Kinetic Stadium - Style #12)"},
+    "gambeta-vertical": {"comp": "GambetaVerticalPromo", "base_json": "gambeta", "name": "Gambeta (Vertical Mobile 9:16 - Style #12)"},
     "ada-laser-audit": {"comp": "AdaLaserAuditPromo", "base_json": "auditbot", "name": "AuditBot / ADA (Cyber Laser DOM Inspector - Style #08)"},
     "ranuk-profit-holo": {"comp": "RanukProfitHoloQuantPromo", "base_json": "ranuk-profit", "name": "Ranuk Profit (Holographic Quant Orderbook - Style #24)"},
 }

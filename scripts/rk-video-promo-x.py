@@ -56,6 +56,15 @@ PROMOS = [
         ),
     },
     {
+        "id": "gambeta_vertical",
+        "product": "Gambeta",
+        "format": "Vertical Mobile 9:16 (15s · 1080x1920)",
+        "video": VIDEOS_DIR / "gambeta-vertical_promo_15s.mp4",
+        "text": (
+            "El modo carrera más real de Sudamérica está en tu celular. 378 clubes, 7 países y el ascenso profundo. Sin descargas pesadas. Jugá gratis: https://gambetafutbol.games"
+        ),
+    },
+    {
         "id": "ada_laser_audit",
         "product": "AuditBot",
         "format": "Cyber Laser DOM Inspector (15s · 1080p)",

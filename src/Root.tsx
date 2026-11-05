@@ -18,6 +18,7 @@ import { IndieProductShowcase } from "./compositions/IndieProductShowcase";
 import { IndieProductShowcaseVertical } from "./compositions/IndieProductShowcaseVertical";
 import { AdaJgvShort } from "./compositions/AdaJgvShort";
 import { GambetaBroadcastPromo } from "./compositions/GambetaBroadcastPromo";
+import { GambetaVerticalPromo } from "./compositions/GambetaVerticalPromo";
 import { AdaLaserAuditPromo } from "./compositions/AdaLaserAuditPromo";
 import { RanukProfitHoloQuantPromo } from "./compositions/RanukProfitHoloQuantPromo";
 import datacanvasConfig from "../products/datacanvas.json";
@@ -378,6 +379,15 @@ export const Root: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+      {/* 1b. Gambeta: Vertical Mobile & Reels/Shorts (9:16)               */}
+      <Composition
+        id="GambetaVerticalPromo"
+        component={GambetaVerticalPromo}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
       />
 
       {/* 2. ADA-Audits / AuditBot: Cyber Laser Inspector (Style #08)     */}
