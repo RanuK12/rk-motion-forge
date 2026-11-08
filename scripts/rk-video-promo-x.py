@@ -52,7 +52,7 @@ PROMOS = [
         "format": "Sports Broadcast & Kinetic Match Day (15s · 1080p)",
         "video": VIDEOS_DIR / "gambeta-broadcast_promo_15s.mp4",
         "text": (
-            "¿Cansado de carreras europeas sin mística? Gambeta conecta 7 países, 16 categorías y 378 clubes reales de Sudamérica. Modo carrera profundo, decisiones de vestuario y la pasión del ascenso. Jugá gratis en la web: https://gambetafutbol.games"
+            "South American football career mode without heavy downloads. Gambeta connects 7 countries, 16 leagues, and 378 real clubs with deep tactical simulations directly in your browser. Play free now. https://gambetafutbol.games"
         ),
     },
     {
@@ -61,7 +61,7 @@ PROMOS = [
         "format": "Vertical Mobile 9:16 (15s · 1080x1920)",
         "video": VIDEOS_DIR / "gambeta-vertical_promo_15s.mp4",
         "text": (
-            "El modo carrera más real de Sudamérica está en tu celular. 378 clubes, 7 países y el ascenso profundo. Sin descargas pesadas. Jugá gratis: https://gambetafutbol.games"
+            "Deep mobile football management for South American leagues. 378 real clubs across 7 countries with real-time tactical decisions and zero install friction. Play free now. https://gambetafutbol.games"
         ),
     },
     {
@@ -70,7 +70,7 @@ PROMOS = [
         "format": "Cyber Laser DOM Inspector (15s · 1080p)",
         "video": VIDEOS_DIR / "ada-laser-audit_promo_15s.mp4",
         "text": (
-            "Is your web app compliant before a demand letter lands? AuditBot runs headless DOM inspection against 84 WCAG 2.1 rules and auto-generates git diff remediation in 12s. Zero lawsuits. Open source: https://github.com/RanuK12/AuditBot"
+            "Automated WCAG compliance stops demand letters before they land. AuditBot runs headless DOM inspection against 84 rules and outputs clean git diff fixes in 12s. Open source. https://github.com/RanuK12/AuditBot"
         ),
     },
     {
@@ -79,7 +79,7 @@ PROMOS = [
         "format": "Holographic Quant Orderbook (15s · 1080p)",
         "video": VIDEOS_DIR / "ranuk-profit-holo_promo_15s.mp4",
         "text": (
-            "Still trading crypto with human emotion and 500ms lag? Ranuk Profit runs automated breakout strategies, trailing stops, and microsecond order routing 24/7 on Binance. Non-custodial. Open source: https://github.com/RanuK12/Ranuk-Profit-Bot"
+            "Discretionary crypto execution loses to emotion and latency. Ranuk Profit runs quantitative breakout strategies and dynamic trailing stops 24/7 on Binance with strict state locks. Open source. https://github.com/RanuK12/Ranuk-Profit-Bot"
         ),
     },
     {
