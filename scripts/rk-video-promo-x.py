@@ -47,24 +47,6 @@ PROMOS = [
         ),
     },
     {
-        "id": "gambeta_broadcast",
-        "product": "Gambeta",
-        "format": "Sports Broadcast & Kinetic Match Day (15s · 1080p)",
-        "video": VIDEOS_DIR / "gambeta-broadcast_promo_15s.mp4",
-        "text": (
-            "South American football career mode without heavy downloads. Gambeta connects 7 countries, 16 leagues, and 378 real clubs with deep tactical simulations directly in your browser. Play free now. https://gambetafutbol.games"
-        ),
-    },
-    {
-        "id": "gambeta_vertical",
-        "product": "Gambeta",
-        "format": "Vertical Mobile 9:16 (15s · 1080x1920)",
-        "video": VIDEOS_DIR / "gambeta-vertical_promo_15s.mp4",
-        "text": (
-            "Deep mobile football management for South American leagues. 378 real clubs across 7 countries with real-time tactical decisions and zero install friction. Play free now. https://gambetafutbol.games"
-        ),
-    },
-    {
         "id": "ada_laser_audit",
         "product": "AuditBot",
         "format": "Cyber Laser DOM Inspector (15s · 1080p)",
