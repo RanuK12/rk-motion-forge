@@ -12,6 +12,7 @@ Rotación sistemática de videos Motion Design Full HD para los proyectos de Ran
 
 import argparse
 import datetime as dt
+import html
 import json
 import os
 import subprocess
@@ -397,7 +398,11 @@ def main():
     else:
         err_msg = f"Fallo al publicar promo de {promo['product']}: code {res.returncode}"
         print(f"❌ {err_msg}")
-        tg_notify(f"❌ <b>Fallo al Publicar Video Promo en X</b>\n\n{err_msg}\nConsola: {res.stdout[-250:]}")
+        snippet = html.escape((res.stdout or res.stderr or "")[-250:])
+        tg_notify(
+            f"❌ <b>Fallo al Publicar Video Promo en X</b>\n\n"
+            f"{html.escape(err_msg)}\n<pre>{snippet}</pre>"
+        )
         sys.exit(1)
 
 if __name__ == "__main__":
