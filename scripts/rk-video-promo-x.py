@@ -192,7 +192,7 @@ def tg_send_video(file_path: Path, caption: str):
         if not token or not file_path.exists():
             return
         cmd = [
-            "curl", "-s", "-X", "POST",
+            "curl", "-4", "-s", "--connect-timeout", "8", "--max-time", "30", "-X", "POST",
             f"https://api.telegram.org/bot{token}/sendVideo",
             "-F", f"chat_id={chat}",
             "-F", f"video=@{str(file_path)}",
@@ -200,7 +200,7 @@ def tg_send_video(file_path: Path, caption: str):
             "-F", "supports_streaming=true",
             "-F", "parse_mode=HTML"
         ]
-        subprocess.run(cmd, capture_output=True, timeout=120)
+        subprocess.run(cmd, capture_output=True, timeout=35)
     except Exception as e:
         print(f"[TG Video Warning] {e}")
 
