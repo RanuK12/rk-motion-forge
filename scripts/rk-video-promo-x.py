@@ -30,6 +30,7 @@ GUARD_DIR = HOME / "Apps/ranukita-bridge/scripts"
 STATE_FILE = HOME / ".ranukita/video_promo_x_state.json"
 LOG_FILE = HOME / ".ranukita/logs/video-promo-x.log"
 TG_CONFIG = HOME / ".ranukita/telegram_config.json"
+CHROME_LOCK = HOME / ".ranukita/_chrome.lock"
 
 sys.path.insert(0, str(GUARD_DIR))
 try:
@@ -200,6 +201,42 @@ def tg_send_video(file_path: Path, caption: str):
     except Exception as e:
         print(f"[TG Video Warning] {e}")
 
+def _pid_alive(pid_str: str) -> bool:
+    try:
+        os.kill(int(pid_str), 0)
+        return True
+    except PermissionError:
+        return True
+    except Exception:
+        return False
+
+
+def wait_for_chrome_lock(max_wait: int = 240, stale_after: int = 3600) -> bool:
+    """Espera a que se libere ~/.ranukita/_chrome.lock; limpia si el dueño murió o venció."""
+    deadline = time.time() + max_wait
+    waited = False
+    while time.time() < deadline:
+        if not CHROME_LOCK.exists():
+            return True
+        try:
+            holder = CHROME_LOCK.read_text().strip()
+            age = time.time() - CHROME_LOCK.stat().st_mtime
+        except Exception:
+            return True
+        if not holder or not _pid_alive(holder) or age >= stale_after:
+            try:
+                CHROME_LOCK.unlink(missing_ok=True)
+                print(f"[Video Promo] Lock huérfano/vencido limpiado (PID={holder or '?'}).")
+            except Exception:
+                pass
+            return True
+        if not waited:
+            print(f"[Video Promo] Chrome ocupado por PID {holder}, esperando turno antes de iniciar...")
+            waited = True
+        time.sleep(5)
+    return not CHROME_LOCK.exists()
+
+
 def load_state():
     if STATE_FILE.exists():
         try:
@@ -315,6 +352,11 @@ def main():
     print(promo["text"])
     print("==================================================")
 
+    # Esperar que Chrome esté libre ANTES de mandar preview o invocar rk-x-post.py (salvo --dry-run)
+    if not args.dry_run and not wait_for_chrome_lock(max_wait=240):
+        print("⏸ Video promo diferido por Chrome ocupado antes de iniciar (sin alerta falsa de error).")
+        sys.exit(75)
+
     # Enviar prueba del video a Telegram siempre antes de postear o en dry-run
     caption_preview = (
         f"🎬 <b>Prueba de Video Promocional para X (@ranuk_dev)</b>\n\n"
@@ -347,7 +389,8 @@ def main():
             str(POST_SCRIPT),
             "--account", "ranuk_dev",
             "--thread-file", thread_file_path,
-            "--video", str(video_path)
+            "--video", str(video_path),
+            "--lock-wait", "180",
         ]
     else:
         cmd = [
@@ -355,20 +398,36 @@ def main():
             str(POST_SCRIPT),
             "--account", "ranuk_dev",
             "--text", promo["text"],
-            "--video", str(video_path)
+            "--video", str(video_path),
+            "--lock-wait", "180",
         ]
 
-    print(f"Ejecutando {POST_SCRIPT.name} con cuenta @ranuk_dev...")
     start_t = time.time()
-    res = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    max_attempts = 3
+    res = None
+    try:
+        for attempt in range(1, max_attempts + 1):
+            print(f"Ejecutando {POST_SCRIPT.name} con cuenta @ranuk_dev (intento {attempt}/{max_attempts})...")
+            res = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+            out_blob = f"{res.stdout or ''}\n{res.stderr or ''}".lower()
+            is_busy = res.returncode == 75 or "chrome ocupado" in out_blob
+            if res.returncode == 0 and "POSTEADO ✓" in (res.stdout or ""):
+                break
+            if is_busy and attempt < max_attempts:
+                print(f"⏸ Chrome ocupado en intento {attempt}/{max_attempts}; espero 45s y reintento...")
+                time.sleep(45)
+                continue
+            break
+    finally:
+        if thread_file_path:
+            Path(thread_file_path).unlink(missing_ok=True)
     dur = time.time() - start_t
-    if thread_file_path:
-        Path(thread_file_path).unlink(missing_ok=True)
     print(res.stdout)
     if res.stderr:
         print(res.stderr)
 
-    if res.returncode == 0 and "POSTEADO ✓" in res.stdout:
+    out_blob = f"{res.stdout or ''}\n{res.stderr or ''}".lower()
+    if res.returncode == 0 and "POSTEADO ✓" in (res.stdout or ""):
         print(f"✓ Video promo publicado exitosamente en @ranuk_dev tras {dur:.1f}s.")
         state["last_index"] = target_idx
         state["last_posted_ts"] = now
@@ -391,6 +450,9 @@ def main():
             f"• <b>Video:</b> {video_path.name} ({size_mb:.1f} MB)\n"
             f"• <b>Estado:</b> Transcodificado y posteado en X exitosamente tras {dur:.1f}s."
         )
+    elif res.returncode == 75 or "chrome ocupado" in out_blob:
+        print("⏸ Video promo diferido por Chrome ocupado tras reintentos (exit 75, sin alerta falsa de error).")
+        sys.exit(75)
     else:
         err_msg = f"Fallo al publicar promo de {promo['product']}: code {res.returncode}"
         print(f"❌ {err_msg}")
