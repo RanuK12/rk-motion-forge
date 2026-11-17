@@ -354,8 +354,8 @@ def main():
 
     # Esperar que Chrome esté libre ANTES de mandar preview o invocar rk-x-post.py (salvo --dry-run)
     if not args.dry_run and not wait_for_chrome_lock(max_wait=240):
-        print("⏸ Video promo diferido por Chrome ocupado antes de iniciar (sin alerta falsa de error).")
-        sys.exit(75)
+        print("⏸ Video promo diferido por Chrome ocupado antes de iniciar (exit 0, sin alerta falsa de error).")
+        sys.exit(0)
 
     # Enviar prueba del video a Telegram siempre antes de postear o en dry-run
     caption_preview = (
@@ -451,8 +451,8 @@ def main():
             f"• <b>Estado:</b> Transcodificado y posteado en X exitosamente tras {dur:.1f}s."
         )
     elif res.returncode == 75 or "chrome ocupado" in out_blob:
-        print("⏸ Video promo diferido por Chrome ocupado tras reintentos (exit 75, sin alerta falsa de error).")
-        sys.exit(75)
+        print("⏸ Video promo diferido por Chrome ocupado tras reintentos (exit 0, sin alerta falsa de error).")
+        sys.exit(0)
     else:
         err_msg = f"Fallo al publicar promo de {promo['product']}: code {res.returncode}"
         print(f"❌ {err_msg}")
